@@ -8,4 +8,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="resources\loupe.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="resources\loupe.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
