@@ -50,8 +50,9 @@
             <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="40"></ColumnDefinition>
-                    <ColumnDefinition Width="40"></ColumnDefinition>
+                    <ColumnDefinition Width="35"></ColumnDefinition>
+                    <ColumnDefinition Width="35"></ColumnDefinition>
+                    <ColumnDefinition Width="35"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
@@ -61,6 +62,7 @@
                 <Label Content="Tours" Grid.Column="0" Grid.Row="0"></Label>
                 <Button Content="+" Grid.Column="1" Grid.Row="0"></Button>
                 <Button Content="-" Grid.Column="2" Grid.Row="0"></Button>
+                <Button Content="[ ]" Grid.Column="3" Grid.Row="0"></Button>
 
                 <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3">
                     <ListBoxItem Content="- Tour 1"></ListBoxItem>
@@ -99,8 +101,9 @@
             <Grid Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="40"></ColumnDefinition>
-                    <ColumnDefinition Width="40"></ColumnDefinition>
+                    <ColumnDefinition Width="35"></ColumnDefinition>
+                    <ColumnDefinition Width="35"></ColumnDefinition>
+                    <ColumnDefinition Width="35"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
@@ -110,6 +113,7 @@
                 <Label Content="Logs: " Grid.Column="0" Grid.Row="0"></Label>
                 <Button Content="+" Grid.Column="1" Grid.Row="0"></Button>
                 <Button Content="-" Grid.Column="2" Grid.Row="0"></Button>
+                <Button Content="[ ]" Grid.Column="3" Grid.Row="0"></Button>
 
                 <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" AutoGenerateColumns="False" >
                     <DataGrid.Columns>
