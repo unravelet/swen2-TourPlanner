@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace swen2_TourPlanner
 {
-    internal class MainViewModel
+    public class MainViewModel
     {
+
+        public MainViewModel()
+        {
+            Searchbar = "something";
+        }
+        
+        public string Searchbar { get; set; }
     }
+
+    
 }
