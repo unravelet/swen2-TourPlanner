@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:swen2_TourPlanner"
         mc:Ignorable="d"
         Title="Tour-Planner" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
 
@@ -40,7 +43,7 @@
                 <RowDefinition Height="*" MinHeight="80"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBox Text="Search"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"></TextBox>
+            <TextBox Text="{Binding Searchbar}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"></TextBox>
             <Button  MinWidth="80"  Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Background="white">
                 <Image Source="/resources/loupe.jpg" />
 
@@ -67,12 +70,12 @@
                 <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4">
                     <ListBoxItem Content="- Tour 1"></ListBoxItem>
                     <ListBoxItem Content="- Tour 2"></ListBoxItem>
-                    <ListBoxItem Content="{StaticResource staticTour3}"></ListBoxItem>
+                    <ListBoxItem ></ListBoxItem>
                     <ListBoxItem>
-                        <TextBlock Text="{StaticResource staticTour3}"/>
+                        <TextBlock />
                     </ListBoxItem>
                     <ListBoxItem>
-                        <ComboBox ItemsSource="{StaticResource TourArray}"/>
+                        <ComboBox />
                     </ListBoxItem>
                 </ListBox>
 
