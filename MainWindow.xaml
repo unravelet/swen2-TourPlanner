@@ -3,14 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TourPlanner"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="Tour-Planner" Height="450" Width="800">
+    <Window.Resources>
+        <sys:String x:Key="staticTour3">- Tour 3 static</sys:String>
+
+        <x:Array x:Key="TourArray" Type="sys:String">
+            <sys:String>- Tour array</sys:String>
+            <sys:String>- Tour array</sys:String>
+            <sys:String>- Tour array</sys:String>
+        </x:Array>
+
+        <LinearGradientBrush x:Key="WindowBackgroundBrush">
+            <GradientStop Offset="0" Color="Silver" />
+            <GradientStop Offset="1" Color="Gray" />
+        </LinearGradientBrush>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
 
             <MenuItem Header="File">
-                <MenuItem Header="Open"></MenuItem>
+                <MenuItem Header="Open" Name="OpenFile" Click="OpenFile_Click"></MenuItem>
                 <MenuItem Header="Save"></MenuItem>
                 <MenuItem Header="Close"></MenuItem>
             </MenuItem>
@@ -41,7 +55,7 @@
             </Grid.RowDefinitions>
 
             <TextBox Text="Search"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"></TextBox>
-            <Button  MinWidth="80"  Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Background="white">
+            <Button Name="Loupe" MinWidth="80"  Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Background="white" Click="Loupe_Click">
                 <Image Source="/resources/loupe.jpg" />
 
             </Button>
@@ -65,6 +79,13 @@
                 <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3">
                     <ListBoxItem Content="- Tour 1"></ListBoxItem>
                     <ListBoxItem Content="- Tour 2"></ListBoxItem>
+                    <ListBoxItem Content="{StaticResource staticTour3}"></ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock Text="{StaticResource staticTour3}"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <ComboBox ItemsSource="{StaticResource TourArray}"/>
+                    </ListBoxItem>
                 </ListBox>
 
             </Grid>

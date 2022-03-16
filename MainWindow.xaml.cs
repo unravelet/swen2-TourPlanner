@@ -24,5 +24,23 @@ namespace TourPlanner
         {
             InitializeComponent();
         }
+
+        private void Loupe_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("I was clicked");
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            string s = null;
+            try
+            {
+                s.Trim();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Handled exception occured:" + ex.Message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }
