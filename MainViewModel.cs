@@ -11,7 +11,7 @@ namespace swen2_TourPlanner
 
         public MainViewModel()
         {
-            Searchbar = "something";
+            Searchbar = "search...";
         }
         
         public string Searchbar { get; set; }
