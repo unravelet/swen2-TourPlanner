@@ -70,13 +70,8 @@
                 <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4">
                     <ListBoxItem Content="- Tour 1"></ListBoxItem>
                     <ListBoxItem Content="- Tour 2"></ListBoxItem>
-                    <ListBoxItem ></ListBoxItem>
-                    <ListBoxItem>
-                        <TextBlock />
-                    </ListBoxItem>
-                    <ListBoxItem>
-                        <ComboBox />
-                    </ListBoxItem>
+                    
+                    
                 </ListBox>
 
             </Grid>
