@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace swen2_TourPlanner
-{
-    public class DelegateCommand : ICommand
-    {
+namespace swen2_TourPlanner {
+    public class DelegateCommand : ICommand {
         readonly Action<object> execute;
         readonly Predicate<object> canExecute;
 

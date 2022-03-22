@@ -67,16 +67,10 @@
                 <Button Content="-" Grid.Column="2" Grid.Row="0"></Button>
                 <Button Content="[ ]" Grid.Column="3" Grid.Row="0"></Button>
 
-<<<<<<< HEAD
-                <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4">
-                    <ListBoxItem Content="- Tour 1"></ListBoxItem>
-                    <ListBoxItem Content="- Tour 2"></ListBoxItem>
-                    
-=======
-                <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding Tours}">
->>>>>>> fea263f830947690a9bfb4d7f7d14b9338f0b07d
-                    
-                </ListBox>
+                <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding Tours}"/>
+
+
+
 
             </Grid>
 

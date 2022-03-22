@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace swen2_TourPlanner
-{
-    public class MainViewModel : INotifyPropertyChanged
-    {
+namespace swen2_TourPlanner {
+    public class MainViewModel : INotifyPropertyChanged {
 
-        public MainViewModel()
-        {
+        public MainViewModel() {
             Searchbar = "search...";
             Tours = new ObservableCollection<string>() { "tour1", "tour2" };
 
@@ -22,7 +15,7 @@ namespace swen2_TourPlanner
                 );
 
         }
-        
+
         public string Searchbar { get; set; }
 
         public DelegateCommand AddTourCommand { get; set; }
@@ -31,5 +24,5 @@ namespace swen2_TourPlanner
         public event PropertyChangedEventHandler? PropertyChanged;
     }
 
-    
+
 }
