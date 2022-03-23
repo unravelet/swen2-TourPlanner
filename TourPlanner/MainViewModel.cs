@@ -1,8 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using TourPlanner.Models;
 
-namespace swen2_TourPlanner {
+namespace TourPlanner {
     public class MainViewModel : INotifyPropertyChanged {
 
         public MainViewModel() {
