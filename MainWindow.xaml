@@ -13,7 +13,7 @@
         <Menu DockPanel.Dock="Top">
 
             <MenuItem Header="File">
-                <MenuItem Header="Open" Name="OpenFile" Click="OpenFile_Click"></MenuItem>
+                <MenuItem Header="Open"></MenuItem>
                 <MenuItem Header="Save"></MenuItem>
                 <MenuItem Header="Close"></MenuItem>
             </MenuItem>

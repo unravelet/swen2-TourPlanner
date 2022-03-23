@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "swen2-TourPlanner", "swen2-TourPlanner.csproj", "{2D92FFAF-0969-4C53-A9B0-D9CD3ADF55E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner.Test", "TourPlanner.Test\TourPlanner.Test.csproj", "{BEA35A54-03EE-4076-8017-B8B3FB42ACBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2D92FFAF-0969-4C53-A9B0-D9CD3ADF55E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D92FFAF-0969-4C53-A9B0-D9CD3ADF55E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D92FFAF-0969-4C53-A9B0-D9CD3ADF55E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEA35A54-03EE-4076-8017-B8B3FB42ACBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA35A54-03EE-4076-8017-B8B3FB42ACBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA35A54-03EE-4076-8017-B8B3FB42ACBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA35A54-03EE-4076-8017-B8B3FB42ACBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
