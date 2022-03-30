@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace TourPlanner.Models {
+namespace TourPlanner {
     public class DelegateCommand : ICommand {
         readonly Action<object> execute;
         readonly Predicate<object> canExecute;
