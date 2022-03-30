@@ -8,16 +8,18 @@ namespace TourPlanner {
 
         public MainViewModel() {
             Searchbar = "search...";
-            Tours = new ObservableCollection<string>() { "tour1", "tour2" };
+            BL = new Businesslogic();
 
             AddTourCommand = new DelegateCommand(
-                (o) => Tours.Count() < 5,
-                (o) => { Tours.Add("New Tour"); }
+                (o) => BL.CanAddTour(),
+                (o) => BL.AddTours()
                 );
 
         }
 
         public string Searchbar { get; set; }
+
+        public Businesslogic BL { get; set; }   
 
         public DelegateCommand AddTourCommand { get; set; }
         public ObservableCollection<string> Tours { get; set; }

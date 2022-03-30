@@ -13,7 +13,7 @@ namespace TourPlanner.BL
 
         public Businesslogic()
         {
-            Tours = new();
+            Tours = new ObservableCollection<string>();
         }
 
         public void AddTours()

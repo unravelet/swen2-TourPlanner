@@ -9,7 +9,8 @@ namespace TourPlanner {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            DataContext = new MainViewModel(new Businesslogic());
+            //Businesslogic bl = new Businesslogic();
+            DataContext = new MainViewModel();
         }
 
         
