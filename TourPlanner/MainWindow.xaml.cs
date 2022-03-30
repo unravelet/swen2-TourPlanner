@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using TourPlanner.BL;
+﻿using System.Windows;
 
 namespace TourPlanner {
     /// <summary>
@@ -13,6 +11,6 @@ namespace TourPlanner {
             DataContext = new MainViewModel();
         }
 
-        
+
     }
 }
