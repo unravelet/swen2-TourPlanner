@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace swen2_TourPlanner {
+namespace TourPlanner {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
