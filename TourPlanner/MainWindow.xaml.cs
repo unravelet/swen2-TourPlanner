@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TourPlanner.BL;
 
 namespace TourPlanner {
     /// <summary>
@@ -6,10 +7,11 @@ namespace TourPlanner {
     /// </summary>
     public partial class MainWindow : Window {
         public MainWindow() {
-            DataContext = new MainViewModel(new Businesslogic());
+
             InitializeComponent();
+            DataContext = new MainViewModel(new Businesslogic());
+
             //Businesslogic bl = new Businesslogic();
-            DataContext = new MainViewModel();
         }
 
 

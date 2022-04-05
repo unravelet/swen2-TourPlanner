@@ -5,18 +5,15 @@ using TourPlanner.BL;
 namespace TourPlanner {
     public class MainViewModel : INotifyPropertyChanged {
 
-        public MainViewModel() {
+        public MainViewModel() { }
+        public MainViewModel(Businesslogic bl) {
             Searchbar = "search...";
-            BL = new Businesslogic();
+            BL = bl;
 
             AddTourCommand = new DelegateCommand(
                 (o) => BL.CanAddTour(),
                 (o) => BL.AddTours()
-                );
-
-
-            
-
+                );           
         }
 
         public string Searchbar { get; set; }

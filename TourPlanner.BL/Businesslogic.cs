@@ -11,9 +11,8 @@ namespace TourPlanner.BL {
 
         public void AddTours() {
             Tour myTour = new Tour("new tour", "hi");
-            string tourName = myTour.Name;
 
-            Tours.Add(tourName);
+            Tours.Add(myTour.Name);
 
             
         }
