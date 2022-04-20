@@ -10,7 +10,7 @@ namespace TourPlanner.BL {
         }
 
         public void AddTours() {
-            Tour myTour = new Tour("new tour","", "", "hi", 1, 2);
+            Tour myTour = new Tour("new tour", "dummy tour", Guid.NewGuid().ToString(),4.3f, 3.2f, 1231.3f, 323.1f);
 
             Tours.Add(myTour.Name);
 
