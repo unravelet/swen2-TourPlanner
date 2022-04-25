@@ -32,9 +32,11 @@ namespace TourPlanner {
 
         public ListViewModel ListViewModel
             => _serviceProvider.GetService<ListViewModel>();
-        public ListViewModel LogViewModel
-            => _serviceProvider.GetService<ListViewModel>();
-        public ListViewModel TourViewModel
-            => _serviceProvider.GetService<ListViewModel>();
+        public LogViewModel LogViewModel
+            => _serviceProvider.GetService<LogViewModel>();
+        public TourViewModel TourViewModel
+            => _serviceProvider.GetService<TourViewModel>();
+        public NewTourViewModel NewTourViewModel
+            => _serviceProvider.GetService<NewTourViewModel>();
     }
 }
