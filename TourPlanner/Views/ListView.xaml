@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner.Views"
         mc:Ignorable="d"
-            >
+        DataContext="{Binding ListViewModel, Source={StaticResource IoCConfig2}}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,10 +20,12 @@
         </Grid.RowDefinitions>
         
         <Label Content="Tours" Grid.Column="0" Grid.Row="0"></Label>
-        <Button Content="+" Grid.Column="1" Grid.Row="0" Command="{Binding AddTourCommand}"></Button>
+        <Button Content="+" Grid.Column="1" Grid.Row="0" Command="{Binding OpenTourWindowCommand}"></Button>
         <Button Content="-" Grid.Column="2" Grid.Row="0"></Button>
         <Button Content="[ ]" Grid.Column="3" Grid.Row="0"></Button>
 
         <ListBox  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding BL.Tours}"/>
+
+        <TextBox Text="{Binding Textbox}"></TextBox>
     </Grid>
 </UserControl>

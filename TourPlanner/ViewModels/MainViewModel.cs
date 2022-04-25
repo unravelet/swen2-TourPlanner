@@ -3,17 +3,17 @@ using System.ComponentModel;
 using TourPlanner.BL;
 
 namespace TourPlanner.ViewModels {
-    public class MainViewModel : INotifyPropertyChanged {
+    public class MainViewModel : BaseViewModel {
 
-        public MainViewModel() { }
-        public MainViewModel(Businesslogic bl) {
+        public MainViewModel() {
             Searchbar = "search...";
-            BL = bl;
+            BL = new Businesslogic();
 
             AddTourCommand = new DelegateCommand(
-                (o) => BL.CanAddTour(),
-                (o) => BL.AddTours()
-                );           
+                    (o) => BL.CanAddTour(),
+                    (o) => BL.AddTours()
+                    );
+
         }
 
         public string Searchbar { get; set; }
@@ -25,7 +25,6 @@ namespace TourPlanner.ViewModels {
         public DelegateCommand RemoveTourCommand { get; set; }  
         public ObservableCollection<string> Tours { get; set; }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
     }
 
 
