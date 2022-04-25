@@ -26,6 +26,5 @@
 
         <ListBox  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding BL.Tours}"/>
 
-        <TextBox Text="{Binding Textbox}"></TextBox>
     </Grid>
 </UserControl>

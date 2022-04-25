@@ -52,10 +52,6 @@
 
 
             
-            
-            
-
-            
             <!--ListView-->
             <views:ListView Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"></views:ListView>
 
