@@ -5,9 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TourPlanner.ViewModels {
-    public class ListViewModel : MainViewModel{
-
-
-
+    public class NewTourViewModel {
     }
 }

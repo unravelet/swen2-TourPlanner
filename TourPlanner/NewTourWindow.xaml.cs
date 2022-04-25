@@ -14,12 +14,11 @@ using System.Windows.Shapes;
 
 namespace TourPlanner {
     /// <summary>
-    /// Interaction logic for TourWindow.xaml
+    /// Interaction logic for NewTourWindow.xaml
     /// </summary>
-    public partial class TourWindow : Window {
-        public TourWindow() {
+    public partial class NewTourWindow : Window {
+        public NewTourWindow() {
             InitializeComponent();
-
         }
     }
 }

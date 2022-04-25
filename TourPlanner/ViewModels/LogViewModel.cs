@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TourPlanner.ViewModels {
-    internal class LogViewModel {
+    public class LogViewModel {
 
     }
 }

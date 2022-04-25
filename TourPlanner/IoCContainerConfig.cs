@@ -21,6 +21,7 @@ namespace TourPlanner {
             services.AddSingleton<ListViewModel>();
             services.AddSingleton<LogViewModel>();
             services.AddSingleton<TourViewModel>();
+            services.AddSingleton<NewTourViewModel>();
 
             _serviceProvider = services.BuildServiceProvider();
         }

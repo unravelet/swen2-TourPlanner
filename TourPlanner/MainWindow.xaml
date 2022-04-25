@@ -56,70 +56,24 @@
             
 
             
-               
+            <!--ListView-->
             <views:ListView Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"></views:ListView>
-                
-                
+
+            <!--TourView-->
+            <views:TourView Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"></views:TourView>
+
+            <!--LogView-->
+            <views:LogView Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"></views:LogView>
 
             
-
+            
 
             <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></GridSplitter>
 
 
-            <Grid Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"></ColumnDefinition>
-                    <ColumnDefinition Width="80"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Label Content="Title: " Grid.Column="0" Grid.Row="0"></Label>
-                <TextBox Text="input field" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"></TextBox>
-
-                <Button Content="Route" Grid.Column="0" Grid.Row="1"></Button>
-                <Button Content="Description" Grid.Column="1" Grid.Row="1"></Button>
-
-                <WrapPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="PaleGreen"></WrapPanel>
-            </Grid>
-
             <GridSplitter Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></GridSplitter>
 
-            <Grid Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="35"></ColumnDefinition>
-                    <ColumnDefinition Width="35"></ColumnDefinition>
-                    <ColumnDefinition Width="35"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Label Content="Logs: " Grid.Column="0" Grid.Row="0"></Label>
-                <Button Content="+" Grid.Column="1" Grid.Row="0"></Button>
-                <Button Content="-" Grid.Column="2" Grid.Row="0"></Button>
-                <Button Content="[ ]" Grid.Column="3" Grid.Row="0"></Button>
-
-                <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" AutoGenerateColumns="False" >
-                    <DataGrid.Columns>
-
-                        <DataGridTemplateColumn Header="Date"></DataGridTemplateColumn>
-
-                        <DataGridTemplateColumn Header="Duration"></DataGridTemplateColumn>
-
-                        <DataGridTemplateColumn Header="Distance"></DataGridTemplateColumn>
-
-                    </DataGrid.Columns>
-                </DataGrid>
-
-            </Grid>
+            
 
         </Grid>
     </DockPanel>
