@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using TourPlanner.BL;
+using TourPlanner.ViewModels;
 
 namespace TourPlanner {
     /// <summary>

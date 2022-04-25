@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using TourPlanner.BL;
 
-namespace TourPlanner {
+namespace TourPlanner.ViewModels {
     public class MainViewModel : INotifyPropertyChanged {
 
         public MainViewModel() { }

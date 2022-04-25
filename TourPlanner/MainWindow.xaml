@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner"
+        xmlns:views="clr-namespace:TourPlanner.Views"
         mc:Ignorable="d"
-        Title="Tour-Planner" Height="450" Width="800">
-    <Window.DataContext>
-        <local:MainViewModel/>
-    </Window.DataContext>
+        Title="Tour-Planner" Height="450" Width="800"
+        DataContext="{Binding MainViewModel, Source={StaticResource IoCConfig2}}">
+    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
 
@@ -28,6 +28,7 @@
             </MenuItem>
         </Menu>
 
+        
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -50,29 +51,17 @@
             </Button>
 
 
-            <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="35"></ColumnDefinition>
-                    <ColumnDefinition Width="35"></ColumnDefinition>
-                    <ColumnDefinition Width="35"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                </Grid.RowDefinitions>
+            
+            
+            
 
-                <Label Content="Tours" Grid.Column="0" Grid.Row="0"></Label>
-                <Button Content="+" Grid.Column="1" Grid.Row="0" Command="{Binding AddTourCommand}"></Button>
-                <Button Content="-" Grid.Column="2" Grid.Row="0"></Button>
-                <Button Content="[ ]" Grid.Column="3" Grid.Row="0"></Button>
+            
+               
+            <views:ListView Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"></views:ListView>
+                
+                
 
-                <ListBox  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding BL.Tours}"/>
-
-
-
-
-            </Grid>
+            
 
 
             <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></GridSplitter>

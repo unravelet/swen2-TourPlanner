@@ -26,5 +26,22 @@ namespace TourPlanner.BL {
 
         public void RemoveTour() {
         }
+
+
+
+        public bool IsTourCreatorVisible { 
+            get { 
+                return IsTourCreatorVisible; 
+            } 
+            set {
+                if (IsTourCreatorVisible == value) {
+                    return;
+                }
+                IsTourCreatorVisible = value;
+                //RaisePropertyChanged("IsTourCreatorVisible");
+            }
+        }
+            
+        
     }
 }
