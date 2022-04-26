@@ -21,11 +21,11 @@
         </Grid.RowDefinitions>
 
         <Label Content="Title: " Grid.Column="0" Grid.Row="0"></Label>
-        <TextBox Text="input field" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"></TextBox>
+        <Label Content="TourTitle" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"></Label>
 
         <Button Content="Route" Grid.Column="0" Grid.Row="1"></Button>
         <Button Content="Description" Grid.Column="1" Grid.Row="1"></Button>
 
-        <WrapPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="PaleGreen"></WrapPanel>
+        <WrapPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3"></WrapPanel>
     </Grid>
 </UserControl>

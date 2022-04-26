@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace TourPlanner.ViewModels {
     public class NewTourViewModel : BaseViewModel {
 
-        //test
+        
     }
 }

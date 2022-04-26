@@ -8,6 +8,11 @@
         mc:Ignorable="d"
         Title="Tour-Planner" Height="450" Width="800"
         DataContext="{Binding MainViewModel, Source={StaticResource IoCConfig2}}">
+    <Window.Resources>
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+    </Window.Resources>
     
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -28,7 +33,6 @@
             </MenuItem>
         </Menu>
 
-        
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -50,10 +54,14 @@
             </Button>
 
 
+            <DockPanel Grid.Column="3" LastChildFill="False">
+                <Button Content="Dark" Width="40" DockPanel.Dock="Right" Background="white"></Button>
+                <Button Content="Light" Width="40" DockPanel.Dock="Right" Background="white"></Button>
+            </DockPanel>
+            
 
-            <ToggleButton Grid.Column="3" Grid.Row="0">
-                
-            </ToggleButton>
+
+
             <!--ListView-->
             <views:ListView Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"></views:ListView>
 
@@ -71,8 +79,8 @@
 
             <GridSplitter Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></GridSplitter>
 
-            
 
+            
         </Grid>
     </DockPanel>
 
