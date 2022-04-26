@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TourPlanner.ViewModels {
     public class ListViewModel : BaseViewModel {
 
-        public ListViewModel()  {
+        public ListViewModel(MainViewModel mvm)  {
 
             OpenTourWindowCommand = new DelegateCommand(
                (o) => true,

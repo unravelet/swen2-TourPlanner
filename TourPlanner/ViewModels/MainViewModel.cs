@@ -5,9 +5,11 @@ using TourPlanner.BL;
 namespace TourPlanner.ViewModels {
     public class MainViewModel : BaseViewModel {
 
-        public MainViewModel() {
+        public MainViewModel(Businesslogic bl) {
             Searchbar = "search...";
-            BL = new Businesslogic();
+            BL = bl;
+
+            //BL = new Businesslogic();
 
             AddTourCommand = new DelegateCommand(
                     (o) => BL.CanAddTour(),

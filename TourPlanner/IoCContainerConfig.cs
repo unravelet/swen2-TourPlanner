@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using TourPlanner.ViewModels;
+using TourPlanner.BL;
 
 namespace TourPlanner {
     public class IoCContainerConfig {
@@ -15,6 +16,7 @@ namespace TourPlanner {
 
             var services = new ServiceCollection();
 
+            services.AddSingleton<Businesslogic>();
 
             //ViewModels
             services.AddSingleton<MainViewModel>();
