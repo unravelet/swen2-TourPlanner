@@ -9,20 +9,37 @@ namespace TourPlanner.Models {
         public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string StartAddress { get; set; }
+        public string StartAddressNum { get; set; }
+        public string StartZip { get; set; }
+        public string StartCountry { get; set; }
+        public string EndAddress { get; set; }
+        public string EndAddressNum { get; set; }
+        public string EndZip { get; set; }
+        public string EndCountry { get; set; }
+
+
         public float Distance { get; set; }
         public float Duration { get; set; }
         public float Longitude { get; set; }
         public float Latitude { get; set; }
         
-        public Tour(string name, string description, string id, float distance, float duration, float latitude, float longitude) { 
-        
+        public Tour(Guid id, string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
+            string endAddress, string endAddressNum, string endZip, string endCountry) {
+
+            Id = id.ToString();
             Name = name;
             Description = description;
-            Id = id;
-            Distance = distance;
-            Duration = duration;
-            Longitude = longitude;
-            Latitude = latitude;
+            StartAddress = startAddress;
+            StartAddressNum = startAddressNum;
+            StartZip = startZip;
+            StartCountry = startCountry;
+            EndAddress = endAddress;
+            EndAddressNum = endAddressNum;
+            EndZip = endZip;
+            EndCountry = endCountry;
+
+
 
         }
 

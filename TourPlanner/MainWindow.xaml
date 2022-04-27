@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TourPlanner"
         xmlns:views="clr-namespace:TourPlanner.Views"
         mc:Ignorable="d"
-        Title="Tour-Planner" Height="450" Width="800"
+        Title="Tour-Planner" Height="450" Width="800" MinHeight="346" MinWidth="503"
         DataContext="{Binding MainViewModel, Source={StaticResource IoCConfig2}}">
     <Window.Resources>
         <ResourceDictionary>

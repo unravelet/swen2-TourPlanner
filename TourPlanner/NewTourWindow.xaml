@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TourPlanner"
         mc:Ignorable="d"
         x:Name="NewTour"
-        Title="New Tour" Height="450" Width="800" MinHeight="382" MinWidth="566"
+        Title="New Tour" Height="450" Width="800" MinHeight="378" MinWidth="566"
         DataContext="{Binding NewTourViewModel, Source={StaticResource IoCConfig2}}">
     
     <Grid>
@@ -43,7 +43,7 @@
         
         
         
-        <Label Grid.Column="1" Grid.Row="1" Content="Name:"></Label>
+        <Label Grid.Column="1" Grid.Row="1" Content="Name*:"></Label>
         <TextBox Name="TourName"  Text="{Binding Name}" Grid.Column="2" Grid.Row="1"></TextBox>
 
         <Label Grid.Column="1" Grid.Row="3" Content="Description:"></Label>
@@ -55,14 +55,14 @@
         
         <TextBlock Grid.Column="1" Grid.Row="5" Text="Start point" FontSize="14"></TextBlock>
         
-        <Label Grid.Column="1" Grid.Row="7" Content="Address:"></Label>
+        <Label Grid.Column="1" Grid.Row="7" Content="Address*:"></Label>
         <TextBox Name="StartAddress" Text="{Binding StartAddress}" Grid.Column="2" Grid.Row="7"></TextBox>
         <TextBox Name="StartAddressNumber" Text="{Binding StartAddressNumber}" Grid.Column="4" Grid.Row="7"></TextBox>
 
-        <Label Grid.Column="1" Grid.Row="9" Content="ZIP:"></Label>
+        <Label Grid.Column="1" Grid.Row="9" Content="ZIP*:"></Label>
         <TextBox Name="StartZip" Text="{Binding StartZip}" Grid.Column="2" Grid.Row="9"></TextBox>
 
-        <Label Grid.Column="1" Grid.Row="11" Content="Country:"></Label>
+        <Label Grid.Column="1" Grid.Row="11" Content="Country*:"></Label>
         <TextBox Name="StartCountry" Text="{Binding StartCountry}" Grid.Column="2" Grid.Row="11"></TextBox>
 
         
@@ -73,14 +73,14 @@
         
         <TextBlock Grid.Column="6" Grid.Row="5" Text="End point" FontSize="14"></TextBlock>
 
-        <Label Grid.Column="6" Grid.Row="7" Content="Address:"></Label>
+        <Label Grid.Column="6" Grid.Row="7" Content="Address*:"></Label>
         <TextBox Name="EndAddress" Text="{Binding EndAddress}" Grid.Column="7" Grid.Row="7"></TextBox>
         <TextBox Name="EndAddressNumber" Text="{Binding EndAddressNumber}" Grid.Column="9" Grid.Row="7"></TextBox>
 
-        <Label Grid.Column="6" Grid.Row="9" Content="ZIP:"></Label>
+        <Label Grid.Column="6" Grid.Row="9" Content="ZIP*:"></Label>
         <TextBox Name="EndZip" Text="{Binding EndZip}" Grid.Column="7" Grid.Row="9"></TextBox>
 
-        <Label Grid.Column="6" Grid.Row="11" Content="Country:"></Label>
+        <Label Grid.Column="6" Grid.Row="11" Content="Country*:"></Label>
         <TextBox Name="EndCountry" Text="{Binding EndCountry}" Grid.Column="7" Grid.Row="11"></TextBox>
 
 
@@ -89,6 +89,8 @@
         <Grid Grid.Row="13" Grid.ColumnSpan="11" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="10"></ColumnDefinition>
                 <ColumnDefinition Width="120"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -99,6 +101,7 @@
             </Grid.RowDefinitions>
 
             <Button Command="{Binding CreateTourCommand}" CommandParameter="{Binding ElementName=NewTour}" IsDefault="True" Grid.Column="1" Grid.Row="1"  Content="Create"></Button>
+            <Button Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=NewTour}" IsCancel="True" Grid.Column="3" Grid.Row="1"  Content="Cancel"></Button>
 
         </Grid>
     </Grid>

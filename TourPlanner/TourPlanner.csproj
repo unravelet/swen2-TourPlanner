@@ -8,15 +8,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="resources\loupe.jpg" />
+    <None Remove="resources\loupe2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.14" />
     <PackageReference Include="MaterialDesignThemes" Version="4.4.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Npgsql" Version="6.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TourPlanner.BL\TourPlanner.BL.csproj" />
     <ProjectReference Include="..\TourPlanner.Models\TourPlanner.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="resources\loupe.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="resources\loupe2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
