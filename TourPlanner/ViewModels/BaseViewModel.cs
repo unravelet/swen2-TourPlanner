@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace TourPlanner.ViewModels {
-    public class BaseViewModel : INotifyPropertyChanged {
+    public abstract class BaseViewModel : INotifyPropertyChanged {
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

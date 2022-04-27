@@ -12,7 +12,6 @@ namespace TourPlanner.ViewModels {
 
             //Color = System.Windows.Media.Brushes.White;
 
-            //BL = new Businesslogic();
 
             AddTourCommand = new DelegateCommand(
                     (o) => BL.CanAddTour(),

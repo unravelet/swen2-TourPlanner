@@ -9,18 +9,52 @@ namespace TourPlanner.ViewModels {
 
         public NewTourViewModel() {
 
+
+
+
             CreateTourCommand = new DelegateCommand(
                 o => true,
-                o => {
-                    Name = "hello";
+                (window) => {
+                   
+                    
+
+
+                    //closing works 
+                    var win = (NewTourWindow)window;
+
+                    Name = win.TourName.Text;
+                    Description = win.TourDescription.Text;
+
+                    //givetoBL (tourname.text,....)
+                    win.Close();
                 }
                 );
 
         }
 
+        private string _name;
+        public string Name {
+            get => _name;
 
-        public string Name { get; set; }
-        public string Description { get; set; }
+            set {
+                if (_name != value) {
+                    _name = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _description;
+        public string Description {
+            get => _description;
+
+            set {
+                if (_description != value) {
+                    _description = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public string StartAddress { get; set; }
         public string StartAddressNumber { get; set; }
         public string StartZip { get; set; }

@@ -19,6 +19,9 @@ namespace TourPlanner {
     public partial class NewTourWindow : Window {
         public NewTourWindow() {
             InitializeComponent();
+
+
+            
         }
     }
 }
