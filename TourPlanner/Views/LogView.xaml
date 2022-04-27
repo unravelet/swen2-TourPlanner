@@ -33,6 +33,12 @@
 
                 <DataGridTemplateColumn Header="Distance"></DataGridTemplateColumn>
 
+                <DataGridTemplateColumn Header="Rating"></DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Difficulty"></DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Comment"></DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
