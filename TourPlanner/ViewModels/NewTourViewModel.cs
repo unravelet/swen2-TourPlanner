@@ -21,6 +21,8 @@ namespace TourPlanner.ViewModels {
                     mvm.BL.CreateTour(Name, Description, StartAddress, StartAddressNumber, StartZip, StartCountry,
                     EndAddress, EndAddressNumber, EndZip, EndCountry);
 
+                    SetEmpty();
+
                     win.Close();
                 }
                 );
@@ -34,6 +36,22 @@ namespace TourPlanner.ViewModels {
                 );
 
         }
+
+
+
+        public void SetEmpty() {
+            Name = "";
+            Description = "";
+            StartAddress = "";
+            StartAddressNumber = "";
+            StartZip = "";
+            StartCountry = "";
+            EndAddress = "";
+            EndAddressNumber = "";
+            EndZip = "";
+            EndCountry = "";
+        }
+
 
         public DelegateCommand CreateTourCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }

@@ -24,10 +24,10 @@ namespace TourPlanner.Models {
         public float Longitude { get; set; }
         public float Latitude { get; set; }
         
-        public Tour(Guid id, string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
+        public Tour(string id, string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
             string endAddress, string endAddressNum, string endZip, string endCountry) {
 
-            Id = id.ToString();
+            Id = id;
             Name = name;
             Description = description;
             StartAddress = startAddress;

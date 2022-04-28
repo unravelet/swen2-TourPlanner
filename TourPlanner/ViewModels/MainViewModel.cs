@@ -13,10 +13,7 @@ namespace TourPlanner.ViewModels {
             //Color = System.Windows.Media.Brushes.White;
 
 
-            AddTourCommand = new DelegateCommand(
-                    (o) => BL.CanAddTour(),
-                    (o) => BL.AddTours()
-                    );
+            
 
             /*SetDarkMode = new DelegateCommand(
                 o => true,

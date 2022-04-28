@@ -1,21 +1,28 @@
 ﻿using System.Collections.ObjectModel;
 using TourPlanner.Models;
+using TourPlanner.DAL;
+using TourPlanner.DAL.DB;
+using TourPlanner.DAL.Repositories;
 
 namespace TourPlanner.BL {
     public class Businesslogic {
         public ObservableCollection<string> Tours { get; set; }
 
+
         public Businesslogic() {
             Tours = new ObservableCollection<string>();
+
+            //TODO
+            //db configs in external file
+            _db = new Database("Host = localhost; Username = postgres; Password = KnautschgesichtmitDatenbank; Database = TPDB");
+            _tourRepo = new TourRepository(_db);
+
+
         }
 
-        public void AddTours() {
-            //Tour myTour = new Tour("new tour", "dummy tour", Guid.NewGuid().ToString(),4.3f, 3.2f, 1231.3f, 323.1f);
-
-            //Tours.Add(myTour.Name);
-
-            
-        }
+        public Database _db;
+        public TourRepository _tourRepo;
+        
 
         public bool CanAddTour() {
             if (Tours.Count() < 10) {
@@ -25,6 +32,7 @@ namespace TourPlanner.BL {
         }
 
         public void RemoveTour() {
+
         }
 
 
@@ -35,8 +43,9 @@ namespace TourPlanner.BL {
         public Tour CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
             string endAddress, string endAddressNum, string endZip, string endCountry) {
 
-            Tour tour = new Tour(new Guid(), name, description, startAddress, startAddressNum, startZip, startCountry, endAddress, endAddressNum, endZip, endCountry);
+            Tour tour = new Tour(Guid.NewGuid().ToString(), name, description, startAddress, startAddressNum, startZip, startCountry, endAddress, endAddressNum, endZip, endCountry);
 
+            _tourRepo.Create(tour);
 
             return tour;
         
@@ -51,9 +60,25 @@ namespace TourPlanner.BL {
 
         }
 
+        public ObservableCollection<string> GetTourList() {
+            var tourList = new List<Tour>();
+            tourList = _tourRepo.ReadAll();
+            TourList = new ObservableCollection<Tour>();
 
+            for (int i = 0; i < tourList.Count; i++) {
+                Tours.Add(tourList[i].Name);
+                //TourList.Add(tourList[i]);
+            }
+
+            return Tours;
+            //return TourList;
+        }
+
+        public ObservableCollection<Tour> TourList { get; set; }
         
-            
-        
+
+
+
+
     }
 }
