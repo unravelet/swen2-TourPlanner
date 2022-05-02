@@ -37,8 +37,6 @@ namespace TourPlanner.BL {
         }
 
 
-
-
         private Tour _tour;
 
         public Tour CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
@@ -61,38 +59,34 @@ namespace TourPlanner.BL {
 
         }
 
-        public ObservableCollection<string> GetTourList() {
-            var tourList = new List<Tour>();
-            tourList = _tourRepo.ReadAll();
-            TourList = new ObservableCollection<Tour>();
-
-            for (int i = 0; i < tourList.Count; i++) {
-                Tours.Add(tourList[i].Name);
-                //TourList.Add(tourList[i]);
-            }
-
-            return Tours;
-            //return TourList;
-        }
+        
 
         public ObservableCollection<Tour> GetTourCollection() {
             var tourList = new List<Tour>();
             tourList = _tourRepo.ReadAll();
-            TourList = new ObservableCollection<Tour>();
+            TourCollection = new ObservableCollection<Tour>();
 
             for (int i = 0; i < tourList.Count; i++) {
-                //Tours.Add(tourList[i].Name);
-                TourList.Add(tourList[i]);
+                TourCollection.Add(tourList[i]);
             }
 
-            //return Tours;
-            return TourList;
+            return TourCollection;
         }
 
-        public ObservableCollection<Tour> TourList { get; set; }
+        public ObservableCollection<Tour> TourCollection { get; set; }
         
 
+        public void DeleteTour(string id) {
+            _tourRepo.Delete(id);
+        }
 
+        public void UpdateTour(Tour tour) { 
+            _tourRepo.Update(tour);
+        }
+
+        public Tour FindTour(string id) {
+           return _tourRepo.Read(id);
+        }
 
 
     }

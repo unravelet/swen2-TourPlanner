@@ -8,20 +8,11 @@ using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels {
     public class ListViewModel : BaseViewModel {
-
-        //problems:
-        //deleteTour deletes first duplicate, not selected item -> maybe unique names, or find a way to make them objects maybe
-        //list doesnt update on runtime
-
-
-
+        public MainViewModel _mvm;
         public ListViewModel(MainViewModel mvm)  {
-
-
             _mvm = mvm;
             
             ShowTourList();
-
 
             OpenTourWindowCommand = new DelegateCommand(
                 o => true,
@@ -29,44 +20,43 @@ namespace TourPlanner.ViewModels {
                     var popup = new NewTourWindow();
                     popup.ShowDialog();
                 }
-                
                 );
 
-            
-
             DeleteTourCommand = new DelegateCommand(
-                o => true,
+                o => IsItemSelected(),
                 (o) => {
-                    TourCollection.Remove(SelectedItem);
+                    _mvm.BL.DeleteTour(SelectedItem.Id);
+                    TourCollection = _mvm.BL.GetTourCollection();
+                }
+                );
+
+            EditTourCommand = new DelegateCommand(
+                o => IsItemSelected(),
+                (o) => {
+                    var popup = new EditTourWindow();
+                    popup.ShowDialog();
                 }
                 );
 
         }
-
-        public Tour SelectedItem { get; set; }
-       
-       // public DelegateCommand OpenTourWindowCommand { get; set; } 
-        //public RelayCommand AddTourCommand { get; set; } 
-        public DelegateCommand AddTourCommand { get; set; }
-
-        public DelegateCommand OpenTourWindowCommand { get; set; }
-        public DelegateCommand DeleteTourCommand { get; set; }
-
-        public MainViewModel _mvm;
-
-        /*private ObservableCollection<string> _tours;
-        public ObservableCollection<string> Tours {
-            get { return _tours; }
+        private Tour _selectedItem;
+        public Tour SelectedItem { 
+            get { 
+                return _selectedItem;
+            }
             set {
-                if (_tours != value) {
-                    _tours = value;
-                    //TODO
-                    //tour list not updating at runtime
-                    OnPropertyChanged("Tours");
+                if (_selectedItem != value) {
+                    _selectedItem = value;
+                    OnPropertyChanged();
+                    EditTourCommand.RaiseCanExecuteChanged();
+                    DeleteTourCommand.RaiseCanExecuteChanged();
                 }
             }
         }
-        */
+        public DelegateCommand AddTourCommand { get; set; }
+        public DelegateCommand OpenTourWindowCommand { get; set; }
+        public DelegateCommand DeleteTourCommand { get; set; }
+        public DelegateCommand EditTourCommand { get; set; }
 
         private ObservableCollection<Tour> _tourCollection;
         public ObservableCollection<Tour> TourCollection {
@@ -76,13 +66,22 @@ namespace TourPlanner.ViewModels {
             set {
                 if (_tourCollection != value) {
                     _tourCollection = value;
-                    //OnPropertyChanged();
+                    OnPropertyChanged();
                 }
             }
         }
 
         public void ShowTourList() {
             TourCollection = _mvm.BL.GetTourCollection();
+        }
+
+        public bool IsItemSelected() {
+            if (SelectedItem == null) {
+                return false;
+            }
+            else {
+                return true;
+            }
         }
 
     }

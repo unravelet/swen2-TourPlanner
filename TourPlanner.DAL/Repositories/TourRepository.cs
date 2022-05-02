@@ -55,8 +55,30 @@ namespace TourPlanner.DAL.Repositories {
             }
         }
 
-        public Tour Read(string name) {
-            throw new NotImplementedException();
+        public Tour Read(string id) {
+            string sql = "SELECT * FROM tours WHERE id = @id";
+            NpgsqlCommand cmd = new NpgsqlCommand(sql);
+            cmd.Parameters.AddWithValue("id", id);
+
+            using (NpgsqlDataReader reader = _db.ExecuteQuery(cmd)) {
+
+                if (reader.Read()) {
+                    return new Tour(reader.GetValue(0).ToString(),      //id
+                        reader.GetValue(1).ToString(),                  //name
+                        reader.GetValue(2).ToString(),                  //description
+                        reader.GetValue(3).ToString(),                  //startadd
+                        reader.GetValue(4).ToString(),                  //startaddnum
+                        reader.GetValue(5).ToString(),                  //startzip
+                        reader.GetValue(6).ToString(),                  //startcountry
+                        reader.GetValue(7).ToString(),                  //endadd
+                        reader.GetValue(8).ToString(),                  //endaddnum
+                        reader.GetValue(9).ToString(),                  //endzip
+                        reader.GetValue(10).ToString()                   //endcountry
+
+                        );
+                }
+                return null;
+            }
         }
 
         public List<Tour> ReadAll() {
@@ -85,7 +107,18 @@ namespace TourPlanner.DAL.Repositories {
         }
 
         public bool Update(Tour data) {
-            throw new NotImplementedException();
+            string sql = "UPDATE tours SET name = @n, description = @d WHERE id = @id";
+            NpgsqlCommand cmd = new NpgsqlCommand(sql);
+            cmd.Parameters.AddWithValue("n", data.Name);
+            cmd.Parameters.AddWithValue("d", data.Description);
+            cmd.Parameters.AddWithValue("id", data.Id);
+
+            if (_db.ExecuteNonQuery(cmd)) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     }
 }

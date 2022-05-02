@@ -24,6 +24,8 @@ namespace TourPlanner {
             services.AddSingleton<LogViewModel>();
             services.AddSingleton<TourViewModel>();
             services.AddSingleton<NewTourViewModel>();
+            services.AddSingleton<EditTourViewModel>();
+            services.AddSingleton<NewTourLogViewModel>();
 
             _serviceProvider = services.BuildServiceProvider();
         }
@@ -40,5 +42,10 @@ namespace TourPlanner {
             => _serviceProvider.GetService<TourViewModel>();
         public NewTourViewModel NewTourViewModel
             => _serviceProvider.GetService<NewTourViewModel>();
+        public EditTourViewModel EditTourViewModel
+            => _serviceProvider.GetService<EditTourViewModel>();
+        public NewTourLogViewModel NewTourLogViewModel
+            => _serviceProvider.GetService<NewTourLogViewModel>();
+
     }
 }

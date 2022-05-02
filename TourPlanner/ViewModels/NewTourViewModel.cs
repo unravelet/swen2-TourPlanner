@@ -27,8 +27,10 @@ namespace TourPlanner.ViewModels {
                     }
                     _mvm.BL.CreateTour(Name, Description, StartAddress, StartAddressNumber, StartZip, StartCountry,
                     EndAddress, EndAddressNumber, EndZip, EndCountry);
+
                     //trigger for "live update"
                     _lvm.TourCollection = _mvm.BL.GetTourCollection();
+
                     CloseWindow();
                 }
             );

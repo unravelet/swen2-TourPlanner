@@ -7,5 +7,19 @@ using System.Threading.Tasks;
 namespace TourPlanner.ViewModels {
     public class LogViewModel : BaseViewModel {
 
+        public LogViewModel() {
+
+            OpenTourLogWindowCommand = new DelegateCommand(
+                o => true,
+                o => {
+                    var popup = new NewTourLogWindow();
+                    popup.ShowDialog();
+                }
+                );
+
+        }
+
+
+        public DelegateCommand OpenTourLogWindowCommand { get; set; }
     }
 }
