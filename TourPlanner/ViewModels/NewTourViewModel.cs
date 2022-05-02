@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using static TourPlanner.NewTourWindow;
 
 namespace TourPlanner.ViewModels {
     public class NewTourViewModel : BaseViewModel {
@@ -13,11 +15,14 @@ namespace TourPlanner.ViewModels {
                 (o) => mvm.BL.CanCreateTour(Name, StartAddress, StartAddressNumber, StartZip, StartCountry, 
                     EndAddress, EndAddressNumber, EndZip, EndCountry)
                 ,
-                (window) => {
-                    var win = (NewTourWindow)window;
-                    /*mvm.BL.CreateTour(win.TourName.Text, win.TourDescription.Text, win.StartAddress.Text, win.StartAddressNumber.Text, win.StartZip.Text,
-                        win.StartCountry.Text, win.EndAddress.Text, win.EndAddressNumber.Text, win.EndZip.Text, win.EndCountry.Text);
-                    */
+                (o) => {
+                    Window win = Application.Current.Windows[2];
+                    //var win = (NewTourWindow)window;
+                    
+                    
+                    if(Description == null) {
+                        Description = "";
+                    }
                     mvm.BL.CreateTour(Name, Description, StartAddress, StartAddressNumber, StartZip, StartCountry,
                     EndAddress, EndAddressNumber, EndZip, EndCountry);
 
@@ -28,12 +33,12 @@ namespace TourPlanner.ViewModels {
                 );
 
             CancelCommand = new DelegateCommand(
-                
-                (window) => {
-                    var win = (NewTourWindow)window;
+                (o) => {
+                    Window win = Application.Current.Windows[2];
+                    SetEmpty();
                     win.Close();
                 }
-                );
+            );
 
         }
 

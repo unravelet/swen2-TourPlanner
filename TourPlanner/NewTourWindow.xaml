@@ -100,8 +100,8 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button Command="{Binding CreateTourCommand}" CommandParameter="{Binding ElementName=NewTour}" IsDefault="True" Grid.Column="1" Grid.Row="1"  Content="Create"></Button>
-            <Button Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=NewTour}" IsCancel="True" Grid.Column="3" Grid.Row="1"  Content="Cancel"></Button>
+            <Button Command="{Binding CreateTourCommand}"  IsDefault="True" Grid.Column="1" Grid.Row="1"  Content="Create"></Button>
+            <Button Command="{Binding CancelCommand}"  IsCancel="True" Grid.Column="3" Grid.Row="1"  Content="Cancel"></Button>
 
         </Grid>
     </Grid>

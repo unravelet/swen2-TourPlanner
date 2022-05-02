@@ -14,7 +14,8 @@ namespace TourPlanner.BL {
 
             //TODO
             //db configs in external file
-            _db = new Database("Host = localhost; Username = postgres; Password = KnautschgesichtmitDatenbank; Database = TPDB");
+            //_db = new Database("Host = localhost; Username = postgres; Password = KnautschgesichtmitDatenbank; Database = TPDB");
+            _db = new Database("Host = localhost; Username = postgres; Password = 1234; Database = TPDB");
             _tourRepo = new TourRepository(_db);
 
 
