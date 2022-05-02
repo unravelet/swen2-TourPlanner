@@ -9,6 +9,9 @@ using static TourPlanner.NewTourWindow;
 namespace TourPlanner.ViewModels {
     public class NewTourViewModel : BaseViewModel {
 
+        private string _windowName = "NewTour";
+
+
         public NewTourViewModel(MainViewModel mvm) {
 
             CreateTourCommand = new DelegateCommand(
@@ -16,32 +19,33 @@ namespace TourPlanner.ViewModels {
                     EndAddress, EndAddressNumber, EndZip, EndCountry)
                 ,
                 (o) => {
-                    Window win = Application.Current.Windows[2];
-                    //var win = (NewTourWindow)window;
-                    
-                    
+                    //Window win = Application.Current.Windows[2];
                     if(Description == null) {
                         Description = "";
                     }
                     mvm.BL.CreateTour(Name, Description, StartAddress, StartAddressNumber, StartZip, StartCountry,
                     EndAddress, EndAddressNumber, EndZip, EndCountry);
 
-                    SetEmpty();
-
-                    win.Close();
+                    CloseWindow();
                 }
-                );
+            );
 
             CancelCommand = new DelegateCommand(
                 (o) => {
-                    Window win = Application.Current.Windows[2];
-                    SetEmpty();
-                    win.Close();
+                    CloseWindow();
                 }
             );
 
         }
 
+        public void CloseWindow() {
+            foreach (Window window in Application.Current.Windows) {
+                if (window.Name == _windowName) {
+                    window.Close();
+                }
+            }
+            SetEmpty();
+        }
 
 
         public void SetEmpty() {
