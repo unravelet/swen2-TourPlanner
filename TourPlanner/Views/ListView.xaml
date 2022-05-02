@@ -24,7 +24,14 @@
         <Button Content="-" Grid.Column="2" Grid.Row="0" Command="{Binding DeleteTourCommand}"></Button>
         <Button Content="[ ]" Grid.Column="3" Grid.Row="0"></Button>
 
-        <ListBox Name="TourListBox" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding Tours}" SelectedItem="{Binding SelectedItem}"/>
+        <ListBox Name="TourListBox" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding TourCollection}" SelectedItem="{Binding SelectedItem}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+        </ListBox>
 
     </Grid>
 </UserControl>

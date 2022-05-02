@@ -10,12 +10,14 @@ namespace TourPlanner.ViewModels {
     public class NewTourViewModel : BaseViewModel {
 
         private string _windowName = "NewTour";
+        private MainViewModel _mvm;
+        private ListViewModel _lvm;
 
-
-        public NewTourViewModel(MainViewModel mvm) {
-
+        public NewTourViewModel(MainViewModel mvm, ListViewModel lvm) {
+            _mvm = mvm;
+            _lvm = lvm;
             CreateTourCommand = new DelegateCommand(
-                (o) => mvm.BL.CanCreateTour(Name, StartAddress, StartAddressNumber, StartZip, StartCountry, 
+                (o) => _mvm.BL.CanCreateTour(Name, StartAddress, StartAddressNumber, StartZip, StartCountry, 
                     EndAddress, EndAddressNumber, EndZip, EndCountry)
                 ,
                 (o) => {
@@ -23,9 +25,10 @@ namespace TourPlanner.ViewModels {
                     if(Description == null) {
                         Description = "";
                     }
-                    mvm.BL.CreateTour(Name, Description, StartAddress, StartAddressNumber, StartZip, StartCountry,
+                    _mvm.BL.CreateTour(Name, Description, StartAddress, StartAddressNumber, StartZip, StartCountry,
                     EndAddress, EndAddressNumber, EndZip, EndCountry);
-
+                    //trigger for "live update"
+                    _lvm.TourCollection = _mvm.BL.GetTourCollection();
                     CloseWindow();
                 }
             );

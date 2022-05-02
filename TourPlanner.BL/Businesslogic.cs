@@ -75,6 +75,20 @@ namespace TourPlanner.BL {
             //return TourList;
         }
 
+        public ObservableCollection<Tour> GetTourCollection() {
+            var tourList = new List<Tour>();
+            tourList = _tourRepo.ReadAll();
+            TourList = new ObservableCollection<Tour>();
+
+            for (int i = 0; i < tourList.Count; i++) {
+                //Tours.Add(tourList[i].Name);
+                TourList.Add(tourList[i]);
+            }
+
+            //return Tours;
+            return TourList;
+        }
+
         public ObservableCollection<Tour> TourList { get; set; }
         
 

@@ -37,16 +37,13 @@ namespace TourPlanner.ViewModels {
             DeleteTourCommand = new DelegateCommand(
                 o => true,
                 (o) => {
-                    //TODO
-                    //deletes first duplicate instead of selected
-                    Tours.Remove(SelectedItem);
-                    //TourList.Remove(SelectedItem);
+                    TourCollection.Remove(SelectedItem);
                 }
                 );
 
         }
 
-        public string SelectedItem { get; set; }
+        public Tour SelectedItem { get; set; }
        
        // public DelegateCommand OpenTourWindowCommand { get; set; } 
         //public RelayCommand AddTourCommand { get; set; } 
@@ -57,7 +54,7 @@ namespace TourPlanner.ViewModels {
 
         public MainViewModel _mvm;
 
-        private ObservableCollection<string> _tours;
+        /*private ObservableCollection<string> _tours;
         public ObservableCollection<string> Tours {
             get { return _tours; }
             set {
@@ -69,14 +66,23 @@ namespace TourPlanner.ViewModels {
                 }
             }
         }
+        */
 
-        public ObservableCollection<Tour> TourList { get; set; }
+        private ObservableCollection<Tour> _tourCollection;
+        public ObservableCollection<Tour> TourCollection {
+            get {
+                return _tourCollection;
+            }
+            set {
+                if (_tourCollection != value) {
+                    _tourCollection = value;
+                    //OnPropertyChanged();
+                }
+            }
+        }
 
         public void ShowTourList() {
-            Tours = _mvm.BL.GetTourList();
-            //TourList = _mvm.BL.GetTourList();
-            //Tours.OnPropertyChanged(); <- inaccessable due to protection level 
-            OnPropertyChanged(nameof(TourList));
+            TourCollection = _mvm.BL.GetTourCollection();
         }
 
     }
