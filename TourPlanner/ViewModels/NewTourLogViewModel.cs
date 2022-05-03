@@ -17,8 +17,7 @@ namespace TourPlanner.ViewModels {
                 (o) => true
                 ,
                 (o) => {
-                   
-                    
+                    _mvm.BL.CreateTourLog(Date, Duration, Distance, Rating, Difficulty, Comment);
                     CloseWindow();
                 }
             );

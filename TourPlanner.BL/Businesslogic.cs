@@ -17,12 +17,14 @@ namespace TourPlanner.BL {
             //_db = new Database("Host = localhost; Username = postgres; Password = KnautschgesichtmitDatenbank; Database = TPDB");
             _db = new Database("Host = localhost; Username = postgres; Password = 1234; Database = TPDB");
             _tourRepo = new TourRepository(_db);
+            _tourLogRepo = new TourLogRepository(_db);
 
 
         }
 
-        public Database _db;
-        public TourRepository _tourRepo;
+        private Database _db;
+        private TourRepository _tourRepo;
+        private TourLogRepository _tourLogRepo;
         
 
         public bool CanAddTour() {
@@ -32,12 +34,8 @@ namespace TourPlanner.BL {
             return false;
         }
 
-        public void RemoveTour() {
+        
 
-        }
-
-
-        private Tour _tour;
 
         public Tour CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
             string endAddress, string endAddressNum, string endZip, string endCountry) {
@@ -88,6 +86,12 @@ namespace TourPlanner.BL {
            return _tourRepo.Read(id);
         }
 
+
+        public void CreateTourLog(string date, string duration, string distance, string rating, string difficulty, string comment) {
+
+            TourLog tourLog = new TourLog(Guid.NewGuid().ToString(), "tourid", date, duration, distance, rating, difficulty, comment);
+            _tourLogRepo.Create(tourLog);
+        }
 
     }
 }

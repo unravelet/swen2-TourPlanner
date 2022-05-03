@@ -24,13 +24,16 @@
         <Label Content="TourTitle" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"></Label>
 
         <Button Content="Route" Grid.Column="0" Grid.Row="1"></Button>
-        <Button Content="Description" Grid.Column="1" Grid.Row="1"></Button>
+        <Button Content="Details" Grid.Column="1" Grid.Row="1"></Button>
+
+
+        <Border Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="Gray" Margin="2"></Border>
 
         <WrapPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3">
             
         </WrapPanel>
         
-        <Border Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="Gray" Margin="2"></Border>
+        
         
         
     </Grid>

@@ -24,20 +24,20 @@
         <Button Content="-" Grid.Column="2" Grid.Row="0"></Button>
         <Button Content="[ ]" Grid.Column="3" Grid.Row="0"></Button>
 
-        <DataGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" AutoGenerateColumns="False" >
+        <DataGrid ItemsSource="{Binding TourLogs}"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" AutoGenerateColumns="False" >
             <DataGrid.Columns>
 
-                <DataGridTemplateColumn Header="Date"></DataGridTemplateColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}"></DataGridTextColumn>
 
-                <DataGridTemplateColumn Header="Duration"></DataGridTemplateColumn>
+                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}"></DataGridTextColumn>
 
-                <DataGridTemplateColumn Header="Distance"></DataGridTemplateColumn>
+                <DataGridTextColumn Header="Distance" Binding="{Binding Distance}"></DataGridTextColumn>
 
-                <DataGridTemplateColumn Header="Rating"></DataGridTemplateColumn>
-                
-                <DataGridTemplateColumn Header="Difficulty"></DataGridTemplateColumn>
-                
-                <DataGridTemplateColumn Header="Comment"></DataGridTemplateColumn>
+                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"></DataGridTextColumn>
+
+                <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}"></DataGridTextColumn>
+
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}"></DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>
