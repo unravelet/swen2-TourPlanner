@@ -22,7 +22,7 @@ namespace TourPlanner.ViewModels {
 
             CreateTourCommand = new DelegateCommand(
                 (o) => _mvm.BL.CanCreateTour(Name, StartAddress, StartAddressNumber, StartZip, StartCountry,
-                    EndAddress, EndAddressNumber, EndZip, EndCountry)
+                    EndAddress, EndAddressNumber, EndZip, EndCountry, StartCity, EndCity)
                 ,
                 (o) => {
                     //Window win = Application.Current.Windows[2];

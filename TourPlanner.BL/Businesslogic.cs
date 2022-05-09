@@ -54,11 +54,12 @@ namespace TourPlanner.BL {
         }
 
         public bool CanCreateTour(string name, string startAddress, string startAddressNum, string startZip, string startCountry,
-            string endAddress, string endAddressNum, string endZip, string endCountry) {
+            string endAddress, string endAddressNum, string endZip, string endCountry, string startCity, string endCity) {
 
             return !String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(startAddress) && !String.IsNullOrEmpty(startAddressNum) &&
                 !String.IsNullOrEmpty(startZip) && !String.IsNullOrEmpty(startCountry) && !String.IsNullOrEmpty(endAddress) &&
-                !String.IsNullOrEmpty(endAddressNum) && !String.IsNullOrEmpty(endZip) && !String.IsNullOrEmpty(endCountry);
+                !String.IsNullOrEmpty(endAddressNum) && !String.IsNullOrEmpty(endZip) && !String.IsNullOrEmpty(endCountry) && !String.IsNullOrEmpty(startCity)
+                && !String.IsNullOrEmpty(endCity);
 
         }
 
