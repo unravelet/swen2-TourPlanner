@@ -30,7 +30,7 @@ namespace TourPlanner.ViewModels {
                         Description = "";
                     }
                     _mvm.BL.CreateTour(Name, Description, StartAddress, StartAddressNumber, StartZip, StartCountry,
-                    EndAddress, EndAddressNumber, EndZip, EndCountry, CurrentItem);
+                    EndAddress, EndAddressNumber, EndZip, EndCountry, CurrentItem, StartCity, EndCity);
 
                     //trigger for "live update"
                     _lvm.TourCollection = _mvm.BL.GetTourCollection();
@@ -65,10 +65,12 @@ namespace TourPlanner.ViewModels {
             StartAddress = "";
             StartAddressNumber = "";
             StartZip = "";
+            StartCity = "";
             StartCountry = "";
             EndAddress = "";
             EndAddressNumber = "";
             EndZip = "";
+            EndCity = "";
             EndCountry = "";
             CurrentItem = AllItems[0];
         }
@@ -126,6 +128,21 @@ namespace TourPlanner.ViewModels {
             }
         }
 
+        private string _startCity;
+        public string StartCity {
+            get => _startCity;
+
+            set {
+                if (_startCity != value) {
+                    _startCity = value;
+                    OnPropertyChanged();
+                    CreateTourCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+
+
         string _startAddress;
         public string StartAddress {
             get => _startAddress;
@@ -179,6 +196,19 @@ namespace TourPlanner.ViewModels {
             }
 
         }
+        private string _endCity;
+        public string EndCity {
+            get => _endCity;
+
+            set {
+                if (_endCity != value) {
+                    _endCity = value;
+                    OnPropertyChanged();
+                    CreateTourCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
 
         string _endAddress;
         public string EndAddress {

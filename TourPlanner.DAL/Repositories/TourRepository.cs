@@ -20,7 +20,7 @@ namespace TourPlanner.DAL.Repositories {
         public bool Create(Tour data) {
             
             string sql = "INSERT INTO tours (id, name, description, startadd, startaddnum, startzip, startcountry, endadd, endaddnum, " +
-                "endzip, endcountry, transport) Values (@id,@n,@d,@sa, @san, @sz, @sc, @ea, @ean, @ez, @ec, @t)";
+                "endzip, endcountry, transport, startcity, endcity) Values (@id,@n,@d,@sa, @san, @sz, @sc, @ea, @ean, @ez, @ec, @t, @sci, @eci)";
             NpgsqlCommand cmd = new NpgsqlCommand(sql);
             cmd.Parameters.AddWithValue("id", data.Id);
             cmd.Parameters.AddWithValue("n", data.Name);
@@ -34,6 +34,8 @@ namespace TourPlanner.DAL.Repositories {
             cmd.Parameters.AddWithValue("ez", data.EndZip);
             cmd.Parameters.AddWithValue("ec", data.EndCountry);
             cmd.Parameters.AddWithValue("t", Convert.ToInt32(data.TransportType));
+            cmd.Parameters.AddWithValue("sci", data.StartCity);
+            cmd.Parameters.AddWithValue("eci", data.EndCity);
 
             if (_db.ExecuteNonQuery(cmd)) {
                 return true;
@@ -75,7 +77,9 @@ namespace TourPlanner.DAL.Repositories {
                         reader.GetValue(8).ToString(),                  //endaddnum
                         reader.GetValue(9).ToString(),                  //endzip
                         reader.GetValue(10).ToString(),                 //endcountry
-                        (Tour.transportType)reader.GetValue(11)         //transport
+                        (Tour.transportType)reader.GetValue(11),         //transport
+                        reader.GetValue(12).ToString(),                 //startcity
+                        reader.GetValue(13).ToString()                  //endcity
                         );
                 }
                 return null;
@@ -100,7 +104,9 @@ namespace TourPlanner.DAL.Repositories {
                         reader.GetValue(8).ToString(),                  //endaddnum
                         reader.GetValue(9).ToString(),                  //endzip
                         reader.GetValue(10).ToString(),                 //endcountry
-                        (Tour.transportType)reader.GetValue(11)         //transport
+                        (Tour.transportType)reader.GetValue(11),         //transport
+                        reader.GetValue(12).ToString(),                 //startcity
+                        reader.GetValue(13).ToString()                  //endcity
 
                         ))  ;
                 }

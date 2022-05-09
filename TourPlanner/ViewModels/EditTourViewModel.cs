@@ -29,7 +29,7 @@ namespace TourPlanner.ViewModels {
                 }
             );
 
-            SelectedTour = new Tour("", "", "", "", "", "", "", "", "", "", "", Tour.transportType.car);
+            SelectedTour = new Tour("", "", "", "", "", "", "", "", "", "", "", Tour.transportType.car, "", "");
         }
 
         public DelegateCommand OKCommand { get; set; }

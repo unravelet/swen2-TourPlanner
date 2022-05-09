@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TourPlanner"
         mc:Ignorable="d"
         x:Name="NewTour"
-        Title="New Tour" Height="450" Width="800" MinHeight="378" MinWidth="566"
+        Title="New Tour" Height="450" Width="800" MinHeight="423" MinWidth="591"
         DataContext="{Binding NewTourViewModel, Source={StaticResource IoCConfig2}}">
     
     <Grid>
@@ -36,6 +36,8 @@
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="12"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -54,7 +56,7 @@
 
         
         <!---Startpoint-->
-        <Border Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4" Grid.RowSpan="7" BorderThickness="1" BorderBrush="Gray" Margin="-10" ></Border>
+        <Border Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4" Grid.RowSpan="9" BorderThickness="1" BorderBrush="Gray" Margin="-10" ></Border>
         
         <TextBlock Grid.Column="1" Grid.Row="5" Text="Start point" FontSize="14"></TextBlock>
         
@@ -65,14 +67,17 @@
         <Label Grid.Column="1" Grid.Row="9" Content="ZIP*:"></Label>
         <TextBox Name="StartZip" Text="{Binding StartZip}" Grid.Column="2" Grid.Row="9"></TextBox>
 
-        <Label Grid.Column="1" Grid.Row="11" Content="Country*:"></Label>
-        <TextBox Name="StartCountry" Text="{Binding StartCountry}" Grid.Column="2" Grid.Row="11"></TextBox>
+        <Label Grid.Column="1" Grid.Row="11" Content="City*:"></Label>
+        <TextBox Text="{Binding StartCity}" Grid.Column="2" Grid.Row="11"></TextBox>
+
+        <Label Grid.Column="1" Grid.Row="13" Content="Country*:"></Label>
+        <TextBox Name="StartCountry" Text="{Binding StartCountry}" Grid.Column="2" Grid.Row="13"></TextBox>
 
         
         
 
         <!---Endpoint-->
-        <Border Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="4" Grid.RowSpan="7" BorderThickness="1" BorderBrush="Gray" Margin="-10" ></Border>
+        <Border Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="4" Grid.RowSpan="9" BorderThickness="1" BorderBrush="Gray" Margin="-10" ></Border>
         
         <TextBlock Grid.Column="6" Grid.Row="5" Text="End point" FontSize="14"></TextBlock>
 
@@ -83,13 +88,16 @@
         <Label Grid.Column="6" Grid.Row="9" Content="ZIP*:"></Label>
         <TextBox Name="EndZip" Text="{Binding EndZip}" Grid.Column="7" Grid.Row="9"></TextBox>
 
-        <Label Grid.Column="6" Grid.Row="11" Content="Country*:"></Label>
-        <TextBox Name="EndCountry" Text="{Binding EndCountry}" Grid.Column="7" Grid.Row="11"></TextBox>
+        <Label Grid.Column="6" Grid.Row="11" Content="City*:"></Label>
+        <TextBox Text="{Binding EndCity}" Grid.Column="7" Grid.Row="11"></TextBox>
+
+        <Label Grid.Column="6" Grid.Row="13" Content="Country*:"></Label>
+        <TextBox Name="EndCountry" Text="{Binding EndCountry}" Grid.Column="7" Grid.Row="13"></TextBox>
 
 
        <!--Button-->
 
-        <Grid Grid.Row="13" Grid.ColumnSpan="11" Grid.RowSpan="2">
+        <Grid Grid.Row="20" Grid.ColumnSpan="11" Grid.RowSpan="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="120"></ColumnDefinition>

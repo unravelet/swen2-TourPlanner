@@ -38,11 +38,13 @@ namespace TourPlanner.ViewModels {
             EditTourCommand = new DelegateCommand(
                 o => IsItemSelected(),
                 (o) => {
+
                     var popup = new EditTourWindow();
                     _etvm.SelectedTour = SelectedItem;
                     _etvm.Name = SelectedItem.Name;
                     _etvm.Description = SelectedItem.Description;
                     popup.ShowDialog();
+                    
                 }
                 );
 
@@ -81,7 +83,7 @@ namespace TourPlanner.ViewModels {
                 if (_tourCollection != value) {
                     _tourCollection = value;
                     OnPropertyChanged();
-                    _tourCollection = _mvm.BL.GetTourCollection();
+                    
                 }
             }
         }

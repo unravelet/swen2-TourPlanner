@@ -38,12 +38,12 @@ namespace TourPlanner.BL {
 
 
         public Tour CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
-            string endAddress, string endAddressNum, string endZip, string endCountry, string transporttype) {
+            string endAddress, string endAddressNum, string endZip, string endCountry, string transporttype, string startCity, string endCity) {
 
             Tour.transportType transp = (Tour.transportType)Enum.Parse(typeof(Tour.transportType), transporttype, true);
 
             Tour tour = new Tour(Guid.NewGuid().ToString(), name, description, startAddress, startAddressNum, startZip, startCountry, endAddress, endAddressNum, 
-                endZip, endCountry, transp);
+                endZip, endCountry, transp, startCity, endCity);
 
             
 

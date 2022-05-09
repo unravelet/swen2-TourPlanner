@@ -9,9 +9,7 @@ namespace TourPlanner.ViewModels {
         public LogViewModel(MainViewModel mvm) {
             _mvm = mvm;
             
-            
-            TourLog tourlog = new TourLog("ss", "ss", "hh", "2", "2", "2", "2", "rrr");
-            TourLogs = new ObservableCollection<TourLog> { tourlog };
+            TourLogs = new ObservableCollection<TourLog>();
 
             OpenTourLogWindowCommand = new DelegateCommand(
                 o => true,

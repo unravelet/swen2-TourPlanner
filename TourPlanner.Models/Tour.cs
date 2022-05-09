@@ -9,10 +9,12 @@ namespace TourPlanner.Models {
         public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string StartCity { get; set; }
         public string StartAddress { get; set; }
         public string StartAddressNum { get; set; }
         public string StartZip { get; set; }
         public string StartCountry { get; set; }
+        public string EndCity { get; set; }
         public string EndAddress { get; set; }
         public string EndAddressNum { get; set; }
         public string EndZip { get; set; }
@@ -34,7 +36,7 @@ namespace TourPlanner.Models {
         public float EndLatitude { get; set; }
 
         public Tour(string id, string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
-            string endAddress, string endAddressNum, string endZip, string endCountry, transportType transportType) {
+            string endAddress, string endAddressNum, string endZip, string endCountry, transportType transportType, string startCity, string endCity) {
 
             Id = id;
             Name = name;
@@ -51,6 +53,9 @@ namespace TourPlanner.Models {
             EndCountry = endCountry;
 
             TransportType = transportType;
+
+            StartCity = startCity;
+            EndCity = endCity;
 
 
         }
