@@ -4,25 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels {
     public class EditTourViewModel : BaseViewModel {
         private string _windowName = "EditTour";
 
         private MainViewModel _mvm;
-        private ListViewModel _lvm;
-        public EditTourViewModel(MainViewModel mvm, ListViewModel lvm) {
+        public EditTourViewModel(MainViewModel mvm) {
             _mvm = mvm;
-            _lvm = lvm;
-
-            //TODO
-            //name and desc doesnt update when opening window
-
-            Name = _lvm.SelectedItem.Name;
-            Description = _lvm.SelectedItem.Description;
-
+            
+            
             OKCommand = new DelegateCommand(
-                o => true,
+                o => CanUpdateTour(),
                 o => {
                     UpdateTour();
                     CloseWindow();
@@ -35,32 +29,7 @@ namespace TourPlanner.ViewModels {
                 }
             );
 
-        }
-
-        private string _name;
-        public string Name {
-            get { 
-                return _name; 
-            }
-            set {
-                if (_name != value) {
-                    _name = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private string _description;
-        public string Description {
-            get {
-                return _description;
-            }
-            set {
-                if (_description != value) {
-                    _description = value;
-                    OnPropertyChanged();
-                }
-            }
+            SelectedTour = new Tour("", "", "", "", "", "", "", "", "", "", "", Tour.transportType.car);
         }
 
         public DelegateCommand OKCommand { get; set; }
@@ -74,19 +43,64 @@ namespace TourPlanner.ViewModels {
                     
                 }
             }
-            
         }
 
-        
+
+        private string _name;
+        public string Name {
+            get => _name;
+
+            set {
+                if (_name != value) {
+                    _name = value;
+                    OnPropertyChanged();
+                    OKCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+        private string _description;
+        public string Description {
+            get => _description;
+
+            set {
+                if (_description != value) {
+                    _description = value;
+                    OnPropertyChanged();
+                    OKCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+        private Tour _selectedTour;
+        public Tour SelectedTour {
+            get {
+                return _selectedTour;
+            }
+            set {
+                if (_selectedTour != value) {
+                    _selectedTour = value;
+                    OnPropertyChanged();
+                    OKCommand.RaiseCanExecuteChanged();
+                }
+            }
+        } 
 
         public void UpdateTour() {
-            _lvm.SelectedItem.Name = Name;
-            _lvm.SelectedItem.Description = Description;
+            SelectedTour.Name = Name;
+            SelectedTour.Description = Description; 
 
-            _mvm.BL.UpdateTour(_lvm.SelectedItem);
+            _mvm.BL.UpdateTour(SelectedTour);
         }
 
-       
+       private bool CanUpdateTour() {
+            if(String.IsNullOrEmpty(Name)) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
 
 
     }

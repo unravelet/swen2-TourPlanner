@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TourPlanner.Models;
 using Npgsql;
 using TourPlanner.DAL.DB;
+using System.Collections.ObjectModel;
 
 namespace TourPlanner.DAL.Repositories {
     public class TourLogRepository : IRepository<TourLog> {
@@ -92,6 +93,33 @@ namespace TourPlanner.DAL.Repositories {
             }
             else {
                 return false;
+            }
+        }
+
+        public ObservableCollection<TourLog> GetTourLogs(string tourId) {
+
+            var logCollection = new ObservableCollection<TourLog>();
+
+            string sql = "SELECT * FROM tourlogs WHERE tourid=@tid";
+            NpgsqlCommand cmd = new NpgsqlCommand(sql);
+            cmd.Parameters.AddWithValue("tid", tourId);
+
+            using (NpgsqlDataReader reader = _db.ExecuteQuery(cmd)) {
+
+                while (reader.Read()) {
+
+                    logCollection.Add(new TourLog(reader.GetValue(0).ToString(),     //id
+                        reader.GetValue(1).ToString(),                              //tourid
+                        reader.GetValue(2).ToString(),                              //date
+                        reader.GetValue(3).ToString(),                              //duration
+                        reader.GetValue(4).ToString(),                              //distance
+                        reader.GetValue(5).ToString(),                              //rating
+                        reader.GetValue(6).ToString(),                              //difficulty
+                        reader.GetValue(7).ToString()                               //comment
+                        ));
+                }
+                return logCollection;
+
             }
         }
     }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using static TourPlanner.NewTourWindow;
+using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels {
     public class NewTourViewModel : BaseViewModel {
@@ -16,17 +18,19 @@ namespace TourPlanner.ViewModels {
         public NewTourViewModel(MainViewModel mvm, ListViewModel lvm) {
             _mvm = mvm;
             _lvm = lvm;
+            
+
             CreateTourCommand = new DelegateCommand(
-                (o) => _mvm.BL.CanCreateTour(Name, StartAddress, StartAddressNumber, StartZip, StartCountry, 
+                (o) => _mvm.BL.CanCreateTour(Name, StartAddress, StartAddressNumber, StartZip, StartCountry,
                     EndAddress, EndAddressNumber, EndZip, EndCountry)
                 ,
                 (o) => {
                     //Window win = Application.Current.Windows[2];
-                    if(Description == null) {
+                    if (Description == null) {
                         Description = "";
                     }
                     _mvm.BL.CreateTour(Name, Description, StartAddress, StartAddressNumber, StartZip, StartCountry,
-                    EndAddress, EndAddressNumber, EndZip, EndCountry);
+                    EndAddress, EndAddressNumber, EndZip, EndCountry, CurrentItem);
 
                     //trigger for "live update"
                     _lvm.TourCollection = _mvm.BL.GetTourCollection();
@@ -40,6 +44,8 @@ namespace TourPlanner.ViewModels {
                     CloseWindow();
                 }
             );
+
+            SetTransportTypes();
 
         }
 
@@ -64,9 +70,33 @@ namespace TourPlanner.ViewModels {
             EndAddressNumber = "";
             EndZip = "";
             EndCountry = "";
+            CurrentItem = AllItems[0];
         }
 
+        private void SetTransportTypes() {
+            AllItems = new ObservableCollection<string>();
+            AllItems.Add("Car");
+            AllItems.Add("Bicycle");
+            AllItems.Add("Walking");
 
+            CurrentItem = AllItems[0];
+        }
+
+        public ObservableCollection<string> AllItems { get; set; }
+        
+       
+        private string _currentItem;
+        public string CurrentItem {
+            get => _currentItem;
+
+            set {
+                if (_currentItem != value) {
+                    _currentItem = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        
         public DelegateCommand CreateTourCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
 

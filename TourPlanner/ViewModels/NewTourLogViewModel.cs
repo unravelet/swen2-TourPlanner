@@ -9,15 +9,20 @@ namespace TourPlanner.ViewModels {
     public class NewTourLogViewModel : BaseViewModel{
         private string _windowName = "NewTourLog";
         private MainViewModel _mvm;
-
-        public NewTourLogViewModel(MainViewModel mvm) {
+        private LogViewModel _logvm;
+        private ListViewModel _listvm;
+        public NewTourLogViewModel(MainViewModel mvm, LogViewModel logvm, ListViewModel listvm) {
             _mvm = mvm;
+            _logvm = logvm;
+            _listvm = listvm;
 
             CreateTourLogCommand = new DelegateCommand(
                 (o) => true
                 ,
                 (o) => {
-                    _mvm.BL.CreateTourLog(Date, Duration, Distance, Rating, Difficulty, Comment);
+                    _mvm.BL.CreateTourLog(_listvm.SelectedItem.Id, Date, Duration, Distance, Rating, Difficulty, Comment);
+                    //update on runtime
+                    _logvm.TourLogs = _mvm.BL.GetTourLogs(_listvm.SelectedItem.Id);
                     CloseWindow();
                 }
             );

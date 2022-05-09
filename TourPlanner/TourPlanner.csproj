@@ -34,4 +34,8 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="resources\maps\" />
+  </ItemGroup>
+
 </Project>

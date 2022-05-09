@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels {
     public class LogViewModel : BaseViewModel {
+        private MainViewModel _mvm;
+        private ListViewModel _lvm;
 
-        public LogViewModel() {
+        public LogViewModel(MainViewModel mvm) {
+            _mvm = mvm;
             
-            TourLog tourlog = new TourLog("ss","ss" , "hh", "2", "2", "2", "2", "rrr");
+            
+            TourLog tourlog = new TourLog("ss", "ss", "hh", "2", "2", "2", "2", "rrr");
             TourLogs = new ObservableCollection<TourLog> { tourlog };
 
             OpenTourLogWindowCommand = new DelegateCommand(
@@ -21,11 +20,22 @@ namespace TourPlanner.ViewModels {
                     popup.ShowDialog();
                 }
                 );
-
         }
 
-        public string Duration { get; set; }
-        public ObservableCollection<TourLog> TourLogs { get; set; }
+        
+        private ObservableCollection<TourLog> _tourLogs;
+        public ObservableCollection<TourLog> TourLogs {
+            get {
+                return _tourLogs;
+            }
+            set {
+                if (_tourLogs != value) {
+                    _tourLogs = value;
+                    OnPropertyChanged();
+                   
+                }
+            }
+        }
 
         public DelegateCommand OpenTourLogWindowCommand { get; set; }
     }

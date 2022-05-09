@@ -18,27 +18,39 @@ namespace TourPlanner.Models {
         public string EndZip { get; set; }
         public string EndCountry { get; set; }
 
+        public enum transportType {
+            car,
+            bicycle,
+            walking
+        } 
+
+        public transportType TransportType { get; set; }
 
         public float Distance { get; set; }
         public float Duration { get; set; }
-        public float Longitude { get; set; }
-        public float Latitude { get; set; }
-        
+        public float StartLongitude { get; set; }
+        public float StartLatitude { get; set; }
+        public float EndLongitude { get; set; }
+        public float EndLatitude { get; set; }
+
         public Tour(string id, string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
-            string endAddress, string endAddressNum, string endZip, string endCountry) {
+            string endAddress, string endAddressNum, string endZip, string endCountry, transportType transportType) {
 
             Id = id;
             Name = name;
             Description = description;
+
             StartAddress = startAddress;
             StartAddressNum = startAddressNum;
             StartZip = startZip;
             StartCountry = startCountry;
+
             EndAddress = endAddress;
             EndAddressNum = endAddressNum;
             EndZip = endZip;
             EndCountry = endCountry;
 
+            TransportType = transportType;
 
 
         }

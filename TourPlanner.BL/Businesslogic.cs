@@ -38,9 +38,14 @@ namespace TourPlanner.BL {
 
 
         public Tour CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
-            string endAddress, string endAddressNum, string endZip, string endCountry) {
+            string endAddress, string endAddressNum, string endZip, string endCountry, string transporttype) {
 
-            Tour tour = new Tour(Guid.NewGuid().ToString(), name, description, startAddress, startAddressNum, startZip, startCountry, endAddress, endAddressNum, endZip, endCountry);
+            Tour.transportType transp = (Tour.transportType)Enum.Parse(typeof(Tour.transportType), transporttype, true);
+
+            Tour tour = new Tour(Guid.NewGuid().ToString(), name, description, startAddress, startAddressNum, startZip, startCountry, endAddress, endAddressNum, 
+                endZip, endCountry, transp);
+
+            
 
             _tourRepo.Create(tour);
 
@@ -62,6 +67,9 @@ namespace TourPlanner.BL {
         public ObservableCollection<Tour> GetTourCollection() {
             var tourList = new List<Tour>();
             tourList = _tourRepo.ReadAll();
+
+            
+
             TourCollection = new ObservableCollection<Tour>();
 
             for (int i = 0; i < tourList.Count; i++) {
@@ -87,11 +95,17 @@ namespace TourPlanner.BL {
         }
 
 
-        public void CreateTourLog(string date, string duration, string distance, string rating, string difficulty, string comment) {
+        public void CreateTourLog(string tourId, string date, string duration, string distance, string rating, string difficulty, string comment) {
 
-            TourLog tourLog = new TourLog(Guid.NewGuid().ToString(), "tourid", date, duration, distance, rating, difficulty, comment);
+            TourLog tourLog = new TourLog(Guid.NewGuid().ToString(), tourId, date, duration, distance, rating, difficulty, comment);
             _tourLogRepo.Create(tourLog);
         }
+
+        public ObservableCollection<TourLog> GetTourLogs(string tourId) {
+
+            return _tourLogRepo.GetTourLogs(tourId);
+        }
+        
 
     }
 }

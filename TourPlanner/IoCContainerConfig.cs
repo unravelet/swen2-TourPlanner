@@ -20,22 +20,19 @@ namespace TourPlanner {
 
             //ViewModels
             services.AddSingleton<MainViewModel>();
-            services.AddSingleton<ListViewModel>();
             services.AddSingleton<LogViewModel>();
             services.AddSingleton<TourViewModel>();
             services.AddSingleton<NewTourViewModel>();
             services.AddSingleton<EditTourViewModel>();
             services.AddSingleton<NewTourLogViewModel>();
+            services.AddSingleton<ListViewModel>();
 
             _serviceProvider = services.BuildServiceProvider();
         }
 
 
         public MainViewModel MainViewModel 
-            => _serviceProvider.GetService<MainViewModel>();    
-
-        public ListViewModel ListViewModel
-            => _serviceProvider.GetService<ListViewModel>();
+            => _serviceProvider.GetService<MainViewModel>();
         public LogViewModel LogViewModel
             => _serviceProvider.GetService<LogViewModel>();
         public TourViewModel TourViewModel
@@ -46,6 +43,8 @@ namespace TourPlanner {
             => _serviceProvider.GetService<EditTourViewModel>();
         public NewTourLogViewModel NewTourLogViewModel
             => _serviceProvider.GetService<NewTourLogViewModel>();
+        public ListViewModel ListViewModel
+            => _serviceProvider.GetService<ListViewModel>();
 
     }
 }

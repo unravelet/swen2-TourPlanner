@@ -8,10 +8,14 @@ using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels {
     public class ListViewModel : BaseViewModel {
-        public MainViewModel _mvm;
-        public ListViewModel(MainViewModel mvm)  {
+        private MainViewModel _mvm;
+        private LogViewModel _logvm;
+        private EditTourViewModel _etvm;
+        public ListViewModel(MainViewModel mvm, LogViewModel logvm, EditTourViewModel etvm)  {
             _mvm = mvm;
-            
+            _logvm = logvm;
+            _etvm = etvm;
+
             ShowTourList();
 
             OpenTourWindowCommand = new DelegateCommand(
@@ -27,6 +31,7 @@ namespace TourPlanner.ViewModels {
                 (o) => {
                     _mvm.BL.DeleteTour(SelectedItem.Id);
                     TourCollection = _mvm.BL.GetTourCollection();
+                   
                 }
                 );
 
@@ -34,6 +39,9 @@ namespace TourPlanner.ViewModels {
                 o => IsItemSelected(),
                 (o) => {
                     var popup = new EditTourWindow();
+                    _etvm.SelectedTour = SelectedItem;
+                    _etvm.Name = SelectedItem.Name;
+                    _etvm.Description = SelectedItem.Description;
                     popup.ShowDialog();
                 }
                 );
@@ -50,6 +58,12 @@ namespace TourPlanner.ViewModels {
                     OnPropertyChanged();
                     EditTourCommand.RaiseCanExecuteChanged();
                     DeleteTourCommand.RaiseCanExecuteChanged();
+
+                    if(_selectedItem != null) {
+                        _logvm.TourLogs = _mvm.BL.GetTourLogs(_selectedItem.Id);
+                    }
+                    
+                    
                 }
             }
         }
@@ -67,6 +81,7 @@ namespace TourPlanner.ViewModels {
                 if (_tourCollection != value) {
                     _tourCollection = value;
                     OnPropertyChanged();
+                    _tourCollection = _mvm.BL.GetTourCollection();
                 }
             }
         }

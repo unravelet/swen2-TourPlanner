@@ -12,12 +12,12 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" MinWidth="12"></ColumnDefinition>
-            <ColumnDefinition Width="80"></ColumnDefinition>
+            <ColumnDefinition Width="95"></ColumnDefinition>
             <ColumnDefinition Width="100*" MinWidth="80"></ColumnDefinition>
             <ColumnDefinition Width="10"></ColumnDefinition>
             <ColumnDefinition Width="80"></ColumnDefinition>
             <ColumnDefinition Width="100*" MinWidth="10"></ColumnDefinition>
-            <ColumnDefinition Width="80"></ColumnDefinition>
+            <ColumnDefinition Width="95"></ColumnDefinition>
             <ColumnDefinition Width="100*" MinWidth="80"></ColumnDefinition>
             <ColumnDefinition Width="10"></ColumnDefinition>
             <ColumnDefinition Width="80"></ColumnDefinition>
@@ -48,6 +48,9 @@
 
         <Label Grid.Column="1" Grid.Row="3" Content="Description:"></Label>
         <TextBox Name="TourDescription" Text="{Binding Description}" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3"></TextBox>
+
+        <Label Grid.Column="6" Grid.Row="1" Content="Transport type: "></Label>
+        <ComboBox Grid.Column="7" Grid.Row="1" ItemsSource="{Binding AllItems}" SelectedItem="{Binding CurrentItem}"></ComboBox>
 
         
         <!---Startpoint-->
