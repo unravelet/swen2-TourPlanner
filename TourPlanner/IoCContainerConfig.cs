@@ -25,6 +25,9 @@ namespace TourPlanner {
             services.AddSingleton<EditTourViewModel>();
             services.AddSingleton<EditTourLogViewModel>();
             services.AddSingleton<NewTourLogViewModel>();
+            services.AddSingleton<RouteViewModel>();
+            services.AddSingleton<DetailsViewModel>();
+            services.AddSingleton<TourViewModel>();
             services.AddSingleton<ListViewModel>();
 
             _serviceProvider = services.BuildServiceProvider();
@@ -43,6 +46,12 @@ namespace TourPlanner {
             => _serviceProvider.GetService<EditTourLogViewModel>();
         public NewTourLogViewModel NewTourLogViewModel
             => _serviceProvider.GetService<NewTourLogViewModel>();
+        public RouteViewModel RouteViewModel
+            => _serviceProvider.GetService<RouteViewModel>();
+        public DetailsViewModel DetailsViewModel
+            => _serviceProvider.GetService<DetailsViewModel>();
+        public TourViewModel TourViewModel
+            => _serviceProvider.GetService<TourViewModel>();
         public ListViewModel ListViewModel
             => _serviceProvider.GetService<ListViewModel>();
 

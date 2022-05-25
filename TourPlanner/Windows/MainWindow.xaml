@@ -38,12 +38,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MinWidth="130" MaxWidth="260"></ColumnDefinition>
                 <ColumnDefinition Width="7"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"></RowDefinition>
-                <RowDefinition Height="*" MinHeight="160"></RowDefinition>
+                <RowDefinition Height="2*" MinHeight="160"></RowDefinition>
                 <RowDefinition Height="7"></RowDefinition>
                 <RowDefinition Height="*" MinHeight="80"></RowDefinition>
             </Grid.RowDefinitions>
@@ -60,8 +60,6 @@
             </DockPanel>
             
 
-
-
             <!--ListView-->
             <views:ListView Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"></views:ListView>
 
@@ -74,7 +72,6 @@
 
             
             
-
             <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></GridSplitter>
 
 

@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner.Views"
+        xmlns:vm="clr-namespace:TourPlanner.ViewModels"
         mc:Ignorable="d"
         DataContext="{Binding TourViewModel, Source={StaticResource IoCConfig2}}">
     
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vm:RouteViewModel }">
+            <local:RouteView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:DetailsViewModel}">
+            <local:DetailsView/>
+        </DataTemplate>
+    </UserControl.Resources>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,18 +33,18 @@
         <Label Content="Title: " Grid.Column="0" Grid.Row="0"></Label>
         <Label Content="TourTitle" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"></Label>
 
-        <Button Content="Route" Grid.Column="0" Grid.Row="1"></Button>
-        <Button Content="Details" Grid.Column="1" Grid.Row="1"></Button>
+        <Button Content="Route" Grid.Column="0" Grid.Row="1" Command="{Binding RouteCommand}"></Button>
+        <Button Content="Details" Grid.Column="1" Grid.Row="1" Command="{Binding DetailsCommand}"></Button>
 
 
         <Border Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="Gray" Margin="2"></Border>
 
-        <WrapPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3">
-            
-        </WrapPanel>
         
         
         
-        
+        <ContentControl Content="{Binding ViewModel}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" />
+
+
+
     </Grid>
 </UserControl>
