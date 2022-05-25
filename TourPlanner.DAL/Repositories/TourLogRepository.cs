@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TourPlanner.Models;
-using Npgsql;
-using TourPlanner.DAL.DB;
+﻿using Npgsql;
 using System.Collections.ObjectModel;
+using TourPlanner.DAL.DB;
+using TourPlanner.Models;
 
 namespace TourPlanner.DAL.Repositories {
     public class TourLogRepository : IRepository<TourLog> {
@@ -28,7 +23,7 @@ namespace TourPlanner.DAL.Repositories {
             cmd.Parameters.AddWithValue("ra", data.Rating);
             cmd.Parameters.AddWithValue("dif", data.Difficulty);
             cmd.Parameters.AddWithValue("c", data.Comment);
-            
+
 
             if (_db.ExecuteNonQuery(cmd)) {
                 return true;

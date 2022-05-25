@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TourPlanner.Models;
-using Npgsql;
+﻿using Npgsql;
 using TourPlanner.DAL.DB;
+using TourPlanner.Models;
 
 namespace TourPlanner.DAL.Repositories {
     public class TourRepository : IRepository<Tour> {
 
         public Database _db;
 
-        public TourRepository(Database db) { 
+        public TourRepository(Database db) {
             _db = db;
-        
+
         }
 
         public bool Create(Tour data) {
-            
+
             string sql = "INSERT INTO tours (id, name, description, startadd, startaddnum, startzip, startcountry, endadd, endaddnum, " +
                 "endzip, endcountry, transport, startcity, endcity) Values (@id,@n,@d,@sa, @san, @sz, @sc, @ea, @ean, @ez, @ec, @t, @sci, @eci)";
             NpgsqlCommand cmd = new NpgsqlCommand(sql);
@@ -108,7 +103,7 @@ namespace TourPlanner.DAL.Repositories {
                         reader.GetValue(12).ToString(),                 //startcity
                         reader.GetValue(13).ToString()                  //endcity
 
-                        ))  ;
+                        ));
                 }
                 return list;
             }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using TourPlanner.Models;
 
@@ -13,8 +9,8 @@ namespace TourPlanner.ViewModels {
         private MainViewModel _mvm;
         public EditTourViewModel(MainViewModel mvm) {
             _mvm = mvm;
-            
-            
+
+
             OKCommand = new DelegateCommand(
                 o => CanUpdateTour(),
                 o => {
@@ -38,9 +34,9 @@ namespace TourPlanner.ViewModels {
         public void CloseWindow() {
             foreach (Window window in Application.Current.Windows) {
                 if (window.Name == _windowName) {
-                    
+
                     window.Close();
-                    
+
                 }
             }
         }
@@ -84,17 +80,17 @@ namespace TourPlanner.ViewModels {
                     OKCommand.RaiseCanExecuteChanged();
                 }
             }
-        } 
+        }
 
         public void UpdateTour() {
             SelectedTour.Name = Name;
-            SelectedTour.Description = Description; 
+            SelectedTour.Description = Description;
 
             _mvm.BL.UpdateTour(SelectedTour);
         }
 
-       private bool CanUpdateTour() {
-            if(String.IsNullOrEmpty(Name)) {
+        private bool CanUpdateTour() {
+            if (String.IsNullOrEmpty(Name)) {
                 return false;
             }
             else {

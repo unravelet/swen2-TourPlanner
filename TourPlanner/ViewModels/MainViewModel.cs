@@ -1,19 +1,20 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using TourPlanner.BL;
-
+using TourPlanner.BL.Services;
 
 namespace TourPlanner.ViewModels {
     public class MainViewModel : BaseViewModel {
 
-        public MainViewModel(Businesslogic bl) {
+        public MainViewModel(Businesslogic bl, MapQuestService mqs) {
             Searchbar = "search...";
             BL = bl;
+            MQS = mqs;
+
 
             //Color = System.Windows.Media.Brushes.White;
 
 
-            
+
 
             /*SetDarkMode = new DelegateCommand(
                 o => true,
@@ -24,6 +25,7 @@ namespace TourPlanner.ViewModels {
 
         public string Searchbar { get; set; }
 
+        public MapQuestService MQS { get; set; }
         public Businesslogic BL { get; set; }
 
         public DelegateCommand AddTourCommand { get; set; }
@@ -31,16 +33,16 @@ namespace TourPlanner.ViewModels {
         public DelegateCommand SetDarkMode { get; set; }
 
 
-        public DelegateCommand RemoveTourCommand { get; set; }  
+        public DelegateCommand RemoveTourCommand { get; set; }
         public ObservableCollection<string> Tours { get; set; }
 
-        
+
         //public System.Windows.Media.SolidColorBrush Color { get; set; }
         /*public void DarkMode() {
             Color = System.Windows.Media.Brushes.Black;
         }
         */
-        
+
     }
 
 

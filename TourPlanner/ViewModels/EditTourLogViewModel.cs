@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels {
-    public class EditTourLogViewModel : BaseViewModel{
+    public class EditTourLogViewModel : BaseViewModel {
         private string _windowName = "EditTourLog";
 
         private MainViewModel _mvm;
@@ -71,7 +67,7 @@ namespace TourPlanner.ViewModels {
         }
 
         private bool CanUpdateTourLog() {
-            if (String.IsNullOrEmpty(Date) || String.IsNullOrEmpty(Duration) || String.IsNullOrEmpty(Distance) || 
+            if (String.IsNullOrEmpty(Date) || String.IsNullOrEmpty(Duration) || String.IsNullOrEmpty(Distance) ||
                 String.IsNullOrEmpty(Rating) || String.IsNullOrEmpty(Difficulty) || String.IsNullOrEmpty(Comment)) {
                 return false;
             }

@@ -10,7 +10,7 @@ namespace TourPlanner.ViewModels {
         public LogViewModel(MainViewModel mvm, EditTourLogViewModel etlvm) {
             _mvm = mvm;
             _etlvm = etlvm;
-            
+
             TourLogs = new ObservableCollection<TourLog>();
 
             OpenTourLogWindowCommand = new DelegateCommand(
@@ -69,7 +69,7 @@ namespace TourPlanner.ViewModels {
                 if (_tourLogs != value) {
                     _tourLogs = value;
                     OnPropertyChanged();
-                   
+
                 }
             }
         }

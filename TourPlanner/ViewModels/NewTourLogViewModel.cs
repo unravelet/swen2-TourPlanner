@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace TourPlanner.ViewModels {
-    public class NewTourLogViewModel : BaseViewModel{
+    public class NewTourLogViewModel : BaseViewModel {
         private string _windowName = "NewTourLog";
         private MainViewModel _mvm;
         private LogViewModel _logvm;
@@ -62,7 +57,7 @@ namespace TourPlanner.ViewModels {
         public string Date {
             get { return _date; }
             set {
-                if (_date != value) { 
+                if (_date != value) {
                     _date = value;
                     OnPropertyChanged();
                     CreateTourLogCommand.RaiseCanExecuteChanged();

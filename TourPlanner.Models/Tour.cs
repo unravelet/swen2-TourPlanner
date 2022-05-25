@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TourPlanner.Models {
+﻿namespace TourPlanner.Models {
     public class Tour {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -24,16 +18,16 @@ namespace TourPlanner.Models {
             car,
             bicycle,
             walking
-        } 
+        }
 
         public transportType TransportType { get; set; }
 
         public float Distance { get; set; }
         public float Duration { get; set; }
-        public float StartLongitude { get; set; }
-        public float StartLatitude { get; set; }
-        public float EndLongitude { get; set; }
-        public float EndLatitude { get; set; }
+        public string ?StartLng { get; set; }
+        public string ?StartLat { get; set; }
+        public string ?EndLng { get; set; }
+        public string ?EndLat { get; set; }
 
         public Tour(string id, string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
             string endAddress, string endAddressNum, string endZip, string endCountry, transportType transportType, string startCity, string endCity) {

@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
-using static TourPlanner.NewTourWindow;
-using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels {
     public class NewTourViewModel : BaseViewModel {
@@ -18,14 +11,13 @@ namespace TourPlanner.ViewModels {
         public NewTourViewModel(MainViewModel mvm, ListViewModel lvm) {
             _mvm = mvm;
             _lvm = lvm;
-            
+
 
             CreateTourCommand = new DelegateCommand(
                 (o) => _mvm.BL.CanCreateTour(Name, StartAddress, StartAddressNumber, StartZip, StartCountry,
                     EndAddress, EndAddressNumber, EndZip, EndCountry, StartCity, EndCity)
                 ,
                 (o) => {
-                    //Window win = Application.Current.Windows[2];
                     if (Description == null) {
                         Description = "";
                     }
@@ -85,8 +77,8 @@ namespace TourPlanner.ViewModels {
         }
 
         public ObservableCollection<string> AllItems { get; set; }
-        
-       
+
+
         private string _currentItem;
         public string CurrentItem {
             get => _currentItem;
@@ -98,7 +90,7 @@ namespace TourPlanner.ViewModels {
                 }
             }
         }
-        
+
         public DelegateCommand CreateTourCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
 
@@ -155,7 +147,7 @@ namespace TourPlanner.ViewModels {
                 }
             }
         }
-    
+
 
         string _startAddressNumber;
         public string StartAddressNumber {
@@ -182,7 +174,7 @@ namespace TourPlanner.ViewModels {
                 }
             }
         }
-        
+
         string _startCountry;
         public string StartCountry {
             get => _startCountry;
@@ -262,7 +254,7 @@ namespace TourPlanner.ViewModels {
         }
 
 
-        
+
 
 
 

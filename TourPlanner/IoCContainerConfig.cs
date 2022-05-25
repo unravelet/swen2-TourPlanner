@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TourPlanner.ViewModels;
+using System.IO;
 using TourPlanner.BL;
+using TourPlanner.BL.Services;
+using TourPlanner.ViewModels;
 
 namespace TourPlanner {
     public class IoCContainerConfig {
@@ -16,12 +14,13 @@ namespace TourPlanner {
 
             var services = new ServiceCollection();
 
+            
             services.AddSingleton<Businesslogic>();
+            services.AddSingleton<MapQuestService>();
 
             //ViewModels
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<LogViewModel>();
-            services.AddSingleton<TourViewModel>();
             services.AddSingleton<NewTourViewModel>();
             services.AddSingleton<EditTourViewModel>();
             services.AddSingleton<EditTourLogViewModel>();
@@ -32,12 +31,10 @@ namespace TourPlanner {
         }
 
 
-        public MainViewModel MainViewModel 
+        public MainViewModel MainViewModel
             => _serviceProvider.GetService<MainViewModel>();
         public LogViewModel LogViewModel
             => _serviceProvider.GetService<LogViewModel>();
-        public TourViewModel TourViewModel
-            => _serviceProvider.GetService<TourViewModel>();
         public NewTourViewModel NewTourViewModel
             => _serviceProvider.GetService<NewTourViewModel>();
         public EditTourViewModel EditTourViewModel
