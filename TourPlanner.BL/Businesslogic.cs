@@ -87,8 +87,16 @@ namespace TourPlanner.BL {
             _tourRepo.Delete(id);
         }
 
+        public void DeleteTourLog(string id) {
+            _tourLogRepo.Delete(id);
+        }
+
         public void UpdateTour(Tour tour) { 
             _tourRepo.Update(tour);
+        }
+
+        public void UpdateTourLog(TourLog tourlog) {
+            _tourLogRepo.Update(tourlog);
         }
 
         public Tour FindTour(string id) {

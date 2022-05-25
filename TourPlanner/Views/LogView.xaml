@@ -21,10 +21,10 @@
 
         <Label Content="Logs: " Grid.Column="0" Grid.Row="0"></Label>
         <Button Content="+" Grid.Column="1" Grid.Row="0" Command="{Binding OpenTourLogWindowCommand}"></Button>
-        <Button Content="-" Grid.Column="2" Grid.Row="0"></Button>
-        <Button Content="[ ]" Grid.Column="3" Grid.Row="0"></Button>
+        <Button Content="-" Grid.Column="2" Grid.Row="0" Command="{Binding DeleteTourLogCommand}" ></Button>
+        <Button Content="[ ]" Grid.Column="3" Grid.Row="0" Command="{Binding EditTourLogCommand}"></Button>
 
-        <DataGrid ItemsSource="{Binding TourLogs}"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" AutoGenerateColumns="False" >
+        <DataGrid ItemsSource="{Binding TourLogs}" SelectedItem="{Binding SelectedItem}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" AutoGenerateColumns="False" >
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="Date" Binding="{Binding Date}"></DataGridTextColumn>

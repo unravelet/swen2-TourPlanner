@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels {
@@ -11,7 +6,7 @@ namespace TourPlanner.ViewModels {
         private MainViewModel _mvm;
         private LogViewModel _logvm;
         private EditTourViewModel _etvm;
-        public ListViewModel(MainViewModel mvm, LogViewModel logvm, EditTourViewModel etvm)  {
+        public ListViewModel(MainViewModel mvm, LogViewModel logvm, EditTourViewModel etvm) {
             _mvm = mvm;
             _logvm = logvm;
             _etvm = etvm;
@@ -31,7 +26,7 @@ namespace TourPlanner.ViewModels {
                 (o) => {
                     _mvm.BL.DeleteTour(SelectedItem.Id);
                     TourCollection = _mvm.BL.GetTourCollection();
-                   
+
                 }
                 );
 
@@ -44,14 +39,14 @@ namespace TourPlanner.ViewModels {
                     _etvm.Name = SelectedItem.Name;
                     _etvm.Description = SelectedItem.Description;
                     popup.ShowDialog();
-                    
+
                 }
                 );
 
         }
         private Tour _selectedItem;
-        public Tour SelectedItem { 
-            get { 
+        public Tour SelectedItem {
+            get {
                 return _selectedItem;
             }
             set {
@@ -61,11 +56,11 @@ namespace TourPlanner.ViewModels {
                     EditTourCommand.RaiseCanExecuteChanged();
                     DeleteTourCommand.RaiseCanExecuteChanged();
 
-                    if(_selectedItem != null) {
+                    if (_selectedItem != null) {
                         _logvm.TourLogs = _mvm.BL.GetTourLogs(_selectedItem.Id);
                     }
-                    
-                    
+
+
                 }
             }
         }
@@ -83,7 +78,7 @@ namespace TourPlanner.ViewModels {
                 if (_tourCollection != value) {
                     _tourCollection = value;
                     OnPropertyChanged();
-                    
+
                 }
             }
         }
