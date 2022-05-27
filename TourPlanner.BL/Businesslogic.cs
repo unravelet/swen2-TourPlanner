@@ -28,8 +28,8 @@ namespace TourPlanner.BL {
         private TourLogRepository _tourLogRepo;
 
 
-
-        private string ReadJsonFile() {
+        //Move this function into a static class maybe
+        public string ReadJsonFile() {
             string path = "appsettings.json";
 
             string readText = File.ReadAllText(path);
