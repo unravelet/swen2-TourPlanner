@@ -6,10 +6,14 @@ namespace TourPlanner.ViewModels {
         private MainViewModel _mvm;
         private LogViewModel _logvm;
         private EditTourViewModel _etvm;
-        public ListViewModel(MainViewModel mvm, LogViewModel logvm, EditTourViewModel etvm) {
+        private TourViewModel _tvm;
+        private DetailsViewModel _detailsvm;
+        public ListViewModel(MainViewModel mvm, LogViewModel logvm, EditTourViewModel etvm, TourViewModel tvm, DetailsViewModel dvm) {
             _mvm = mvm;
             _logvm = logvm;
             _etvm = etvm;
+            _tvm = tvm;
+            _detailsvm = dvm;
 
             ShowTourList();
 
@@ -57,7 +61,7 @@ namespace TourPlanner.ViewModels {
                     DeleteTourCommand.RaiseCanExecuteChanged();
 
                     if (_selectedItem != null) {
-                        _logvm.TourLogs = _mvm.BL.GetTourLogs(_selectedItem.Id);
+                        SetProperties();
                     }
 
 
@@ -94,6 +98,24 @@ namespace TourPlanner.ViewModels {
             else {
                 return true;
             }
+        }
+
+        public void SetProperties() {
+            _logvm.TourLogs = _mvm.BL.GetTourLogs(_selectedItem.Id);
+            _tvm.Name = _selectedItem.Name;
+
+            _detailsvm.Description = _selectedItem.Description;
+            _detailsvm.StartAddress = _selectedItem.StartAddress;
+            _detailsvm.StartAddressNumber = _selectedItem.StartAddressNum;
+            _detailsvm.StartCity = _selectedItem.StartCity;
+            _detailsvm.StartZip = _selectedItem.StartZip;
+            _detailsvm.StartCountry = _selectedItem.StartCountry;
+
+            _detailsvm.EndAddress = _selectedItem.EndAddress;
+            _detailsvm.EndAddressNumber = _selectedItem.EndAddressNum;
+            _detailsvm.EndCity = _selectedItem.EndCity;
+            _detailsvm.EndZip = _selectedItem.EndZip;
+            _detailsvm.EndCountry = _selectedItem.EndCountry;
         }
 
     }

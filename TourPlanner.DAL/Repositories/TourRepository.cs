@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using System.Collections.ObjectModel;
 using TourPlanner.DAL.DB;
 using TourPlanner.Models;
 
@@ -15,7 +16,8 @@ namespace TourPlanner.DAL.Repositories {
         public bool Create(Tour data) {
 
             string sql = "INSERT INTO tours (id, name, description, startadd, startaddnum, startzip, startcountry, endadd, endaddnum, " +
-                "endzip, endcountry, transport, startcity, endcity) Values (@id,@n,@d,@sa, @san, @sz, @sc, @ea, @ean, @ez, @ec, @t, @sci, @eci)";
+                "endzip, endcountry, transport, startcity, endcity, startlat, startlng, endlat, endlng) " +
+                "Values (@id,@n,@d,@sa, @san, @sz, @sc, @ea, @ean, @ez, @ec, @t, @sci, @eci, @slat, @slng, @elat, @elng)";
             NpgsqlCommand cmd = new NpgsqlCommand(sql);
             cmd.Parameters.AddWithValue("id", data.Id);
             cmd.Parameters.AddWithValue("n", data.Name);
@@ -31,6 +33,10 @@ namespace TourPlanner.DAL.Repositories {
             cmd.Parameters.AddWithValue("t", Convert.ToInt32(data.TransportType));
             cmd.Parameters.AddWithValue("sci", data.StartCity);
             cmd.Parameters.AddWithValue("eci", data.EndCity);
+            cmd.Parameters.AddWithValue("slat", data.StartLat);
+            cmd.Parameters.AddWithValue("slng", data.StartLng);
+            cmd.Parameters.AddWithValue("elat", data.EndLat);
+            cmd.Parameters.AddWithValue("elng", data.EndLng);
 
             if (_db.ExecuteNonQuery(cmd)) {
                 return true;
@@ -61,7 +67,7 @@ namespace TourPlanner.DAL.Repositories {
             using (NpgsqlDataReader reader = _db.ExecuteQuery(cmd)) {
 
                 if (reader.Read()) {
-                    return new Tour(reader.GetValue(0).ToString(),      //id
+                    Tour tour = new Tour(reader.GetValue(0).ToString(), //id
                         reader.GetValue(1).ToString(),                  //name
                         reader.GetValue(2).ToString(),                  //description
                         reader.GetValue(3).ToString(),                  //startadd
@@ -72,23 +78,28 @@ namespace TourPlanner.DAL.Repositories {
                         reader.GetValue(8).ToString(),                  //endaddnum
                         reader.GetValue(9).ToString(),                  //endzip
                         reader.GetValue(10).ToString(),                 //endcountry
-                        (Tour.transportType)reader.GetValue(11),         //transport
+                        (Tour.transportType)reader.GetValue(11),        //transport
                         reader.GetValue(12).ToString(),                 //startcity
-                        reader.GetValue(13).ToString()                  //endcity
-                        );
+                        reader.GetValue(13).ToString());                //endcity
+                    tour.StartLat = reader.GetValue(14).ToString();
+                    tour.StartLng = reader.GetValue(15).ToString();
+                    tour.EndLat = reader.GetValue(16).ToString();
+                    tour.EndLng = reader.GetValue(17).ToString();
+
+                    return tour;
                 }
                 return null;
             }
         }
 
-        public List<Tour> ReadAll() {
-            List<Tour> list = new List<Tour>();
+        public ObservableCollection<Tour> ReadAll() {
+            var list = new ObservableCollection<Tour>();
             string sql = "SELECT * FROM tours";
             NpgsqlCommand cmd = new NpgsqlCommand(sql);
 
             using (NpgsqlDataReader reader = _db.ExecuteQuery(cmd)) {
                 while (reader.Read()) {
-                    list.Add(new Tour(reader.GetValue(0).ToString(),    //id
+                    Tour tour = new Tour(reader.GetValue(0).ToString(), //id
                         reader.GetValue(1).ToString(),                  //name
                         reader.GetValue(2).ToString(),                  //description
                         reader.GetValue(3).ToString(),                  //startadd
@@ -99,11 +110,16 @@ namespace TourPlanner.DAL.Repositories {
                         reader.GetValue(8).ToString(),                  //endaddnum
                         reader.GetValue(9).ToString(),                  //endzip
                         reader.GetValue(10).ToString(),                 //endcountry
-                        (Tour.transportType)reader.GetValue(11),         //transport
+                        (Tour.transportType)reader.GetValue(11),        //transport
                         reader.GetValue(12).ToString(),                 //startcity
-                        reader.GetValue(13).ToString()                  //endcity
+                        reader.GetValue(13).ToString());                //endcity
+                    tour.StartLat = reader.GetValue(14).ToString();    
+                    tour.StartLng = reader.GetValue(15).ToString();     
+                    tour.EndLat = reader.GetValue(16).ToString();
+                    tour.EndLng = reader.GetValue(17).ToString();
 
-                        ));
+                    list.Add(tour);
+
                 }
                 return list;
             }

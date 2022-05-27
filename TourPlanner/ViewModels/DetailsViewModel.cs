@@ -8,7 +8,7 @@ namespace TourPlanner.ViewModels {
     public class DetailsViewModel : BaseViewModel{
 
         public DetailsViewModel() {
-            Description = "this is a tour description jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
+           /* Description = "this is a tour description jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj";
 
             StartAddress = "Allerheiligenplatz";
             StartAddressNumber = "10";
@@ -21,7 +21,7 @@ namespace TourPlanner.ViewModels {
             EndCity = "Wien";
             EndZip = "1200";
             EndCountry = "AT";
-
+           */
 
         }
 

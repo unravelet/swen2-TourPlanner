@@ -10,6 +10,22 @@ namespace TourPlanner.BL {
     public class Businesslogic {
         public ObservableCollection<string> Tours { get; set; }
         private MapQuestService _mapQuestService;
+        }
+
+        }
+
+        }
+
+        }
+
+        }
+
+        }
+
+        }
+
+        }
+
         private Database _db;
         private TourRepository _tourRepo;
         private TourLogRepository _tourLogRepo;
@@ -49,21 +65,22 @@ namespace TourPlanner.BL {
                 && !String.IsNullOrEmpty(endCity);
 
         }
+        public bool CanCreateTourLog(string date, string duration, string distance, string rating, string difficulty) {
+
+            return !String.IsNullOrEmpty(date) && !String.IsNullOrEmpty(duration) && !String.IsNullOrEmpty(distance) &&
+                !String.IsNullOrEmpty(rating) && !String.IsNullOrEmpty(difficulty);
+
+        }
 
 
 
         public ObservableCollection<Tour> GetTourCollection() {
-            var tourList = new List<Tour>();
-            tourList = _tourRepo.ReadAll();
+            
 
+            //TourCollection = _tourRepo.ReadAll();
 
-            TourCollection = new ObservableCollection<Tour>();
-
-            for (int i = 0; i < tourList.Count; i++) {
-                TourCollection.Add(tourList[i]);
-            }
-
-            return TourCollection;
+            
+            return _tourRepo.ReadAll();
         }
 
 
@@ -98,6 +115,8 @@ namespace TourPlanner.BL {
 
             return _tourLogRepo.GetTourLogs(tourId);
         }
+
+        
 
 
     }
