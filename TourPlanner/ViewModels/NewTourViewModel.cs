@@ -21,6 +21,7 @@ namespace TourPlanner.ViewModels {
                     if (Description == null) {
                         Description = "";
                     }
+
                     _mvm.BL.CreateTour(Name, Description, StartAddress, StartAddressNumber, StartZip, StartCountry,
                     EndAddress, EndAddressNumber, EndZip, EndCountry, CurrentItem, StartCity, EndCity);
 
@@ -40,6 +41,8 @@ namespace TourPlanner.ViewModels {
             SetTransportTypes();
 
         }
+
+
 
         public void CloseWindow() {
             foreach (Window window in Application.Current.Windows) {

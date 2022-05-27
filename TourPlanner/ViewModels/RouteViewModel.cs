@@ -6,5 +6,23 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.ViewModels {
     public class RouteViewModel : BaseViewModel {
+
+        public RouteViewModel() {
+            
+        }
+
+        private string _source;
+        public string Source {
+            get { return _source; }
+            set {
+                if (_source != value) {
+                    _source = value;
+                    OnPropertyChanged();
+                }
+
+
+
+            }
+        }
     }
 }

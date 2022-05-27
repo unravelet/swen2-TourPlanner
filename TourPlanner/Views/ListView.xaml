@@ -10,9 +10,10 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="35"></ColumnDefinition>
-            <ColumnDefinition Width="35"></ColumnDefinition>
-            <ColumnDefinition Width="35"></ColumnDefinition>
+            <ColumnDefinition Width="32"></ColumnDefinition>
+            <ColumnDefinition Width="32"></ColumnDefinition>
+            <ColumnDefinition Width="32"></ColumnDefinition>
+            <ColumnDefinition Width="32"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
@@ -23,8 +24,9 @@
         <Button Content="+" Grid.Column="1" Grid.Row="0" Command="{Binding OpenTourWindowCommand}"></Button>
         <Button Content="-" Grid.Column="2" Grid.Row="0" Command="{Binding DeleteTourCommand}"></Button>
         <Button Content="[ ]" Grid.Column="3" Grid.Row="0" Command="{Binding EditTourCommand}" ></Button>
+        <Button Content="( )" Grid.Column="4" Grid.Row="0" Command="{Binding UpdateCommand}" ></Button>
 
-        <ListBox Name="TourListBox" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding TourCollection}" SelectedItem="{Binding SelectedItem}">
+        <ListBox Name="TourListBox" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="5" ItemsSource="{Binding TourCollection}" SelectedItem="{Binding SelectedItem}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"></TextBlock>

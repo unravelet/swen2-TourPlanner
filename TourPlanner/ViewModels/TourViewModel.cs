@@ -22,7 +22,7 @@ namespace TourPlanner.ViewModels {
                 );
 
 
-            ViewModel = new DetailsViewModel();
+            ViewModel = new RouteViewModel();
 
         }
 
