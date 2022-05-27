@@ -10,9 +10,77 @@
     
     
     <Grid Background="White">
-        <TextBlock Text="Description:"></TextBlock>
-        <TextBlock></TextBlock>
-        <TextBlock Text="Address:"></TextBlock>
-        <TextBlock></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"></ColumnDefinition>
+            <ColumnDefinition Width="70"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="15"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            
+        </Grid.RowDefinitions>
+        
+        
+        <TextBlock Text="Description:" Grid.Column="1" Grid.Row="1"></TextBlock>
+        <TextBlock Text="{Binding Description}" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"></TextBlock>
+        <TextBlock Text="Address:" Grid.Column="1" Grid.Row="2"></TextBlock>
+        
+        <TextBlock Text="From:" Grid.Column="1" Grid.Row="3"></TextBlock>
+        <Grid Grid.Column="2" Grid.Row="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Text="{Binding StartAddress}" Grid.Column="0" Grid.Row="0"></TextBlock>
+            <TextBlock Text="{Binding StartAddressNumber}" Grid.Column="1" Grid.Row="0"></TextBlock>
+            
+            <TextBlock Text="{Binding StartCity}" Grid.Column="0" Grid.Row="1"></TextBlock>
+            <TextBlock Text="{Binding StartZip}" Grid.Column="1" Grid.Row="2"></TextBlock>
+            <TextBlock Text="{Binding StartCountry}" Grid.Column="2" Grid.Row="1"></TextBlock>
+        </Grid>
+
+        
+        
+        <TextBlock Text="To:" Grid.Column="1" Grid.Row="5"></TextBlock>
+        
+        <Grid Grid.Column="2" Grid.Row="5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Text="{Binding EndAddress}" Grid.Column="0" Grid.Row="0"></TextBlock>
+            <TextBlock Text="{Binding EndAddressNumber}" Grid.Column="1" Grid.Row="0"></TextBlock>
+            
+            <TextBlock Text="{Binding EndCity}" Grid.Column="0" Grid.Row="1"></TextBlock>
+            <TextBlock Text="{Binding EndZip}" Grid.Column="1" Grid.Row="2"></TextBlock>
+            <TextBlock Text="{Binding EndCountry}" Grid.Column="2" Grid.Row="1"></TextBlock>
+        </Grid>
+
+        
+        
+        
     </Grid>
 </UserControl>
