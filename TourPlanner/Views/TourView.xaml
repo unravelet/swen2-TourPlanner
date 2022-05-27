@@ -31,7 +31,7 @@
         </Grid.RowDefinitions>
 
         <Label Content="Title: " Grid.Column="0" Grid.Row="0"></Label>
-        <Label Content="TourTitle" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"></Label>
+        <Label Content="{Binding Name}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"></Label>
 
         <Button Content="Route" Grid.Column="0" Grid.Row="1" Command="{Binding RouteCommand}"></Button>
         <Button Content="Details" Grid.Column="1" Grid.Row="1" Command="{Binding DetailsCommand}"></Button>

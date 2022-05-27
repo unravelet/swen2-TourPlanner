@@ -50,8 +50,8 @@ namespace TourPlanner.DAL.Repositories {
             throw new NotImplementedException();
         }
 
-        public List<TourLog> ReadAll() {
-            List<TourLog> list = new List<TourLog>();
+        public ObservableCollection<TourLog> ReadAll() {
+            var list = new ObservableCollection<TourLog>();
             string sql = "SELECT * FROM tourlogs";
             NpgsqlCommand cmd = new NpgsqlCommand(sql);
 

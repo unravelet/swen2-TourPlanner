@@ -12,7 +12,7 @@ namespace TourPlanner.ViewModels {
 
 
             OKCommand = new DelegateCommand(
-                o => CanUpdateTourLog(),
+                o => _mvm.BL.CanCreateTourLog(Date, Duration, Distance, Rating, Difficulty),
                 o => {
                     UpdateTourLog();
                     CloseWindow();

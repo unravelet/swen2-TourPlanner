@@ -12,7 +12,7 @@ namespace TourPlanner.ViewModels {
             _listvm = listvm;
 
             CreateTourLogCommand = new DelegateCommand(
-                (o) => true
+                (o) => _mvm.BL.CanCreateTourLog(Date, Duration, Distance, Rating, Difficulty)
                 ,
                 (o) => {
                     _mvm.BL.CreateTourLog(_listvm.SelectedItem.Id, Date, Duration, Distance, Rating, Difficulty, Comment);

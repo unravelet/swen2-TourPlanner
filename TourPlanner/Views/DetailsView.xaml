@@ -9,7 +9,7 @@
              DataContext="{Binding DetailsViewModel, Source={StaticResource IoCConfig2}}">
     
     
-    <Grid Background="White">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"></ColumnDefinition>
             <ColumnDefinition Width="70"></ColumnDefinition>

@@ -2,35 +2,31 @@
 
 namespace TourPlanner.ViewModels {
     public class TourViewModel : BaseViewModel {
-
+        
         public TourViewModel() {
-
+            
+            
 
 
             RouteCommand = new DelegateCommand(
+                o => CanChangeToRoute(),
                 o => { ViewModel = new RouteViewModel();
                 }
                 );
 
             DetailsCommand = new DelegateCommand(
+                o => CanChangeToDetails(),
                 o => {
                     ViewModel = new DetailsViewModel();
                 }
                 );
 
 
-            ChangeViewCommand = new DelegateCommand(
-                o => ChangeView(o)
-
-                ) ;
-
+            ViewModel = new DetailsViewModel();
 
         }
 
 
-
-        public List<BaseViewModel> NavItems { get; set; }
-        public DelegateCommand ChangeViewCommand { get; set; }
 
         public DelegateCommand RouteCommand { get; set; }
         public DelegateCommand DetailsCommand { get; set; }
@@ -41,15 +37,44 @@ namespace TourPlanner.ViewModels {
             set {
                 _viewModel = value;
                 OnPropertyChanged();
+                DetailsCommand.RaiseCanExecuteChanged();
+                RouteCommand.RaiseCanExecuteChanged();
             }
         }
 
 
-        void ChangeView(object param) {
-            SelectedView = param;
+        private bool CanChangeToDetails() {
+            if(ViewModel is DetailsViewModel) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        public bool CanChangeToRoute() {
+            if (ViewModel is RouteViewModel) {
+                return false;
+            }
+            else {
+                return true;
+            }
         }
 
 
+        private string _name;
+        public string Name {
+            get => _name;
+
+            set {
+                if (_name != value) {
+                    _name = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        
 
         private object _selectedView;
         public object SelectedView {
@@ -59,6 +84,8 @@ namespace TourPlanner.ViewModels {
                 OnPropertyChanged();
             }
         }
+
+
 
     }
 
