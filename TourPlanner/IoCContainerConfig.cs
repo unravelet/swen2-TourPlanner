@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using TourPlanner.BL;
 using TourPlanner.BL.Services;
+using TourPlanner.DAL.DB;
+using TourPlanner.DAL.Repositories;
 using TourPlanner.ViewModels;
 
 namespace TourPlanner {
@@ -14,9 +16,16 @@ namespace TourPlanner {
 
             var services = new ServiceCollection();
 
-            
-            services.AddSingleton<Businesslogic>();
+            //Database and Repositories
+            services.AddSingleton<Database>();
+            services.AddSingleton<TourLogRepository>();
+            services.AddSingleton<TourRepository>();
+
+            //Services
             services.AddSingleton<MapQuestService>();
+
+            //Businesslogic
+            services.AddSingleton<Businesslogic>();
 
             //ViewModels
             services.AddSingleton<MainViewModel>();

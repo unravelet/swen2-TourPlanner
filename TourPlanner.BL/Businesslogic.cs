@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using System.Collections.ObjectModel;
+using TourPlanner.BL.Services;
 using TourPlanner.DAL.DB;
 using TourPlanner.DAL.Repositories;
 using TourPlanner.Models;
@@ -8,37 +9,23 @@ using TourPlanner.Models;
 namespace TourPlanner.BL {
     public class Businesslogic {
         public ObservableCollection<string> Tours { get; set; }
-        
-
-        public Businesslogic() {
-            Tours = new ObservableCollection<string>();
-
-
-            JObject config = JObject.Parse(ReadJsonFile());
-
-            _db = new Database((string)config["connstr"]);
-            _tourRepo = new TourRepository(_db);
-            _tourLogRepo = new TourLogRepository(_db);
-
-
-        }
-
+        private MapQuestService _mapQuestService;
         private Database _db;
         private TourRepository _tourRepo;
         private TourLogRepository _tourLogRepo;
 
+        public ObservableCollection<Tour> TourCollection { get; set; }
 
-        //Move this function into a static class maybe
-        public string ReadJsonFile() {
-            string path = "appsettings.json";
 
-            string readText = File.ReadAllText(path);
+        public Businesslogic(MapQuestService mqs, Database db, TourRepository trp, TourLogRepository tlrp) {
+            _db = db;
+            _tourRepo = trp;
+            _tourLogRepo = tlrp;
 
-            return readText;
-
+            _mapQuestService = mqs;
         }
 
-        public Tour CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
+        public async void CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
             string endAddress, string endAddressNum, string endZip, string endCountry, string transporttype, string startCity, string endCity) {
 
             Tour.transportType transp = (Tour.transportType)Enum.Parse(typeof(Tour.transportType), transporttype, true);
@@ -46,12 +33,11 @@ namespace TourPlanner.BL {
             Tour tour = new Tour(Guid.NewGuid().ToString(), name, description, startAddress, startAddressNum, startZip, startCountry, endAddress, endAddressNum,
                 endZip, endCountry, transp, startCity, endCity);
 
+            tour = await _mapQuestService.getTourData(tour);
 
+            _mapQuestService.getStaticMap(tour);
 
             _tourRepo.Create(tour);
-
-            return tour;
-
         }
 
         public bool CanCreateTour(string name, string startAddress, string startAddressNum, string startZip, string startCountry,
@@ -79,8 +65,6 @@ namespace TourPlanner.BL {
 
             return TourCollection;
         }
-
-        public ObservableCollection<Tour> TourCollection { get; set; }
 
 
         public void DeleteTour(string id) {

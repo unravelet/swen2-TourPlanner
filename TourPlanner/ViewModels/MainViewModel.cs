@@ -5,10 +5,9 @@ using TourPlanner.BL.Services;
 namespace TourPlanner.ViewModels {
     public class MainViewModel : BaseViewModel {
 
-        public MainViewModel(Businesslogic bl, MapQuestService mqs) {
+        public MainViewModel(Businesslogic bl) {
             Searchbar = "search...";
             BL = bl;
-            MQS = mqs;
 
 
             //Color = System.Windows.Media.Brushes.White;
@@ -24,8 +23,6 @@ namespace TourPlanner.ViewModels {
         }
 
         public string Searchbar { get; set; }
-
-        public MapQuestService MQS { get; set; }
         public Businesslogic BL { get; set; }
 
         public DelegateCommand AddTourCommand { get; set; }

@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Newtonsoft.Json.Linq;
+using Npgsql;
 
 namespace TourPlanner.DAL.DB {
     public class Database {
@@ -7,8 +8,10 @@ namespace TourPlanner.DAL.DB {
         public NpgsqlConnection Conn { get; set; }
 
 
-        public Database(string connString) {
-            conn = new NpgsqlConnection(connString);
+        public Database() {
+            JObject config = JObject.Parse(File.ReadAllText("appsettings.json"));
+
+            conn = new NpgsqlConnection((string)config["connstr"]);
 
             OpenCon();
 
