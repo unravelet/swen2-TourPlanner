@@ -21,15 +21,25 @@ namespace TourPlanner.BL.Services {
                 return true;
             }
             else {
-                AddressNum = -1;
+                AddressNum = 0;
                 return false;
             }
         }
 
         public bool IsAddressNumber(int num) {
             //worlds highest address number
-            if(num <= 986039 && num > 0) {
+            if(num <= 986039 && num > 1) {
                 return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        public bool IsZip(int num) {
+            //highest and lowest zip
+            if(num <= 999999 && num >= 501) {
+               return true;
             }
             else {
                 return false;
