@@ -10,22 +10,6 @@ namespace TourPlanner.BL {
     public class Businesslogic {
         public ObservableCollection<string> Tours { get; set; }
         private MapQuestService _mapQuestService;
-        }
-
-        }
-
-        }
-
-        }
-
-        }
-
-        }
-
-        }
-
-        }
-
         private Database _db;
         private TourRepository _tourRepo;
         private TourLogRepository _tourLogRepo;
