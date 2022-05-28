@@ -1,16 +1,13 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using TourPlanner.BL.Services;
-using TourPlanner.BL;
-using TourPlanner.Models;
 
 namespace TourPlanner.Test {
-    public class TPTest {
-
+    public class UserInputTests {
         [Test]
         public void IsInputInt() {
             //arrange
@@ -31,7 +28,7 @@ namespace TourPlanner.Test {
             UserInputService uiService = new UserInputService();
 
             //act
-            string input = "input";
+            string input = "input3";
 
 
             //assert

@@ -5,13 +5,13 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner", "TourPlanner\TourPlanner.csproj", "{3BF2D5E6-7B05-48F2-B671-3BC891D8115D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner.Test", "TourPlanner.Test\TourPlanner.Test.csproj", "{6BFBDA19-9807-4CAA-822D-400CB53C1C7E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner.BL", "TourPlanner.BL\TourPlanner.BL.csproj", "{D7FC853A-0E46-4E1D-BA09-C3A5BFABF9C6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner.DAL", "TourPlanner.DAL\TourPlanner.DAL.csproj", "{4A6D4423-3B5E-4BA3-A402-FBEF4403A311}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner.Models", "TourPlanner.Models\TourPlanner.Models.csproj", "{10617CC1-3FEC-4B65-BE51-38B675C739F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlanner.Test", "TourPlanner.Test\TourPlanner.Test.csproj", "{4D2F60A9-70A3-4B48-AED7-6E0A97774073}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{3BF2D5E6-7B05-48F2-B671-3BC891D8115D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BF2D5E6-7B05-48F2-B671-3BC891D8115D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BF2D5E6-7B05-48F2-B671-3BC891D8115D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6BFBDA19-9807-4CAA-822D-400CB53C1C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BFBDA19-9807-4CAA-822D-400CB53C1C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BFBDA19-9807-4CAA-822D-400CB53C1C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BFBDA19-9807-4CAA-822D-400CB53C1C7E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7FC853A-0E46-4E1D-BA09-C3A5BFABF9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7FC853A-0E46-4E1D-BA09-C3A5BFABF9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7FC853A-0E46-4E1D-BA09-C3A5BFABF9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{10617CC1-3FEC-4B65-BE51-38B675C739F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10617CC1-3FEC-4B65-BE51-38B675C739F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10617CC1-3FEC-4B65-BE51-38B675C739F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D2F60A9-70A3-4B48-AED7-6E0A97774073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D2F60A9-70A3-4B48-AED7-6E0A97774073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D2F60A9-70A3-4B48-AED7-6E0A97774073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D2F60A9-70A3-4B48-AED7-6E0A97774073}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
