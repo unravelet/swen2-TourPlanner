@@ -8,7 +8,7 @@ namespace TourPlanner.ViewModels {
     public class RouteViewModel : BaseViewModel {
 
         public RouteViewModel() {
-            
+            Source = $"{Environment.CurrentDirectory}" + $"/img/noimage.jpg";
         }
 
         private string _source;
