@@ -81,7 +81,7 @@ namespace TourPlanner.BL.Services
         {
             using (var ms = new MemoryStream(image))
             {
-                using (var fs = new FileStream("./img/new.jpg", FileMode.Create))
+                using (var fs = new FileStream($"./img/{name}.jpg", FileMode.Create))
                 {
                     ms.WriteTo(fs);
                 }
