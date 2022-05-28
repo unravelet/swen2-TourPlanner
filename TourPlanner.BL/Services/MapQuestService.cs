@@ -11,6 +11,7 @@ namespace TourPlanner.BL.Services
         private string _key;
         private string _directionsApi = "http://www.mapquestapi.com/directions/v2/route";
         private string _staticMapApi = "https://www.mapquestapi.com/staticmap/v5/map";
+        private ILoggerWrapper _logger;
 
         public MapQuestService()
         {
@@ -21,6 +22,8 @@ namespace TourPlanner.BL.Services
             //create folder for images
             string path = Environment.CurrentDirectory + "/img";
             Directory.CreateDirectory(path);
+
+            _logger = LoggerFactory.GetLogger();
         }
 
         public async Task<Tour> getTourData(Tour userInput)
