@@ -11,6 +11,7 @@ namespace TourPlanner.BL {
         
         private MapQuestService _mapQuestService;
         private ReportService _reportService;
+        private UserInputService _userInputService;
         private Database _db;
         private TourRepository _tourRepo;
         private TourLogRepository _tourLogRepo;
@@ -18,13 +19,14 @@ namespace TourPlanner.BL {
         public ObservableCollection<Tour> TourCollection { get; set; }
 
 
-        public Businesslogic(MapQuestService mqs, Database db, TourRepository trp, TourLogRepository tlrp, ReportService rs) {
+        public Businesslogic(MapQuestService mqs, Database db, TourRepository trp, TourLogRepository tlrp, ReportService rs, UserInputService uis) {
             _db = db;
             _tourRepo = trp;
             _tourLogRepo = tlrp;
 
             _mapQuestService = mqs;
             _reportService = rs;
+            _userInputService = uis;
         }
 
         public async void CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
@@ -109,6 +111,7 @@ namespace TourPlanner.BL {
             _reportService.GenerateSummary(GetTourCollection());
         }
 
+        
 
 
     }
