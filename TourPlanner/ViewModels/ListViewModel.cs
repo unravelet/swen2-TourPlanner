@@ -10,14 +10,16 @@ namespace TourPlanner.ViewModels {
         private TourViewModel _tvm;
         private DetailsViewModel _detailsvm;
         private RouteViewModel _routevm;
+        private MenuViewModel _menuvm;
         public ListViewModel(MainViewModel mvm, LogViewModel logvm, EditTourViewModel etvm, TourViewModel tvm,
-            DetailsViewModel dvm, RouteViewModel rvm) {
+            DetailsViewModel dvm, RouteViewModel rvm, MenuViewModel menuvm) {
             _mvm = mvm;
             _logvm = logvm;
             _etvm = etvm;
             _tvm = tvm;
             _detailsvm = dvm;
             _routevm = rvm;
+            _menuvm = menuvm;
 
             ShowTourList();
             if (_selectedItem != null) {
@@ -135,6 +137,8 @@ namespace TourPlanner.ViewModels {
 
 
             _routevm.Source = $"{Environment.CurrentDirectory}" + $"/img/{_selectedItem.Id}.jpg";
+
+            _menuvm.SelectedTour = SelectedItem;
         }
 
     }

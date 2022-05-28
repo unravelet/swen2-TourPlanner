@@ -8,30 +8,10 @@
         mc:Ignorable="d"
         Title="Tour-Planner" Height="714" Width="860" MinHeight="437" MinWidth="650"
         DataContext="{Binding MainViewModel, Source={StaticResource IoCConfig2}}">
-    <Window.Resources>
-        <ResourceDictionary>
-            
-        </ResourceDictionary>
-    </Window.Resources>
+    
     
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
-
-            <MenuItem Header="File">
-                <MenuItem Header="Open"></MenuItem>
-                <MenuItem Header="Save"></MenuItem>
-                <MenuItem Header="Close"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Save"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Options">
-
-            </MenuItem>
-            <MenuItem Header="Help">
-
-            </MenuItem>
-        </Menu>
+        <views:MenuView DockPanel.Dock="Top"></views:MenuView>
 
 
         <Grid>
