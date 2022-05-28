@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System.Net;
 using TourPlanner.Models;
 
 namespace TourPlanner.BL.Services
@@ -28,37 +29,55 @@ namespace TourPlanner.BL.Services
 
         public async Task<Tour> getTourData(Tour userInput)
         {
-            string tmpUrl = _directionsApi + $"?key={_key}&from={userInput.StartAddressNum} {userInput.StartAddress}" +
-                                                                $",{userInput.StartCity}" +
-                                                                $",{userInput.StartCountry}" +
-                                                                $",{userInput.StartZip}" +
-                                                          $"&to={userInput.EndAddressNum} {userInput.EndAddress}" +
-                                                                $",{userInput.EndCity}" +
-                                                                $",{userInput.EndCountry}" +
-                                                                $",{userInput.EndZip}" +
-                                                          $"&routType={userInput.TransportType}";
-
-            using (HttpResponseMessage response = await _client.GetAsync(tmpUrl))
+            try
             {
-                using (HttpContent content = response.Content)
+                string tmpUrl = _directionsApi + $"?key={_key}&from={userInput.StartAddressNum} {userInput.StartAddress}" +
+                                                                    $",{userInput.StartCity}" +
+                                                                    $",{userInput.StartCountry}" +
+                                                                    $",{userInput.StartZip}" +
+                                                              $"&to={userInput.EndAddressNum} {userInput.EndAddress}" +
+                                                                    $",{userInput.EndCity}" +
+                                                                    $",{userInput.EndCountry}" +
+                                                                    $",{userInput.EndZip}" +
+                                                              $"&routType={userInput.TransportType}";
+
+                using (HttpResponseMessage response = await _client.GetAsync(tmpUrl))
                 {
-                    string mycontent = await content.ReadAsStringAsync();
-                    Console.WriteLine(mycontent);
+                    using (HttpContent content = response.Content)
+                    {
+                        string mycontent = await content.ReadAsStringAsync();
+                        Console.WriteLine(mycontent);
 
-                    JObject o = JObject.Parse(mycontent);
+                        JObject o = JObject.Parse(mycontent);
 
-                    Console.WriteLine(o["route"]);
-                    Console.WriteLine("---------------------------------------------------------------------------------");
-                    //Startpoint
-                    userInput.StartLat = (string)o["route"]["locations"][0]["latLng"]["lat"];
-                    userInput.StartLng = (string)o["route"]["locations"][0]["latLng"]["lng"];
-                    //Endpoint
-                    userInput.EndLat = (string)o["route"]["locations"][1]["latLng"]["lat"];
-                    userInput.EndLng = (string)o["route"]["locations"][1]["latLng"]["lng"];
+                        Console.WriteLine(o["route"]);
+                        Console.WriteLine("---------------------------------------------------------------------------------");
+                        //Startpoint
+                        userInput.StartLat = (string)o["route"]["locations"][0]["latLng"]["lat"];
+                        userInput.StartLng = (string)o["route"]["locations"][0]["latLng"]["lng"];
+                        //Endpoint
+                        userInput.EndLat = (string)o["route"]["locations"][1]["latLng"]["lat"];
+                        userInput.EndLng = (string)o["route"]["locations"][1]["latLng"]["lng"];
 
-                    //
-                    return userInput;
+                        //
+                        return userInput;
+                    }
                 }
+            }
+            catch (WebException we)
+            {
+                _logger.Error($"Failed to retrieve tour data from RouteApi exception: {we.Message}");
+                throw;
+            }
+            catch (NullReferenceException ne)
+            {
+                _logger.Error($"{ne.Source} was null exception: {ne.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"Failed to get tour data exception: {ex.Message}");
+                throw;
             }
         }
 
@@ -74,9 +93,10 @@ namespace TourPlanner.BL.Services
                     saveTourImage(image, tour.Id);
                 }
             }
-            catch (Exception ex)
+            catch (WebException we)
             {
-                Console.WriteLine(ex.Message);
+                _logger.Error($"Failed to retrieve map image from StaticMapApi exception: {we.Message}");
+                throw we;
             }
         }
 

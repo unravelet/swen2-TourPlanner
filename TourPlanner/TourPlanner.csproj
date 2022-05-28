@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="resources\maps\**" />
+    <EmbeddedResource Remove="resources\maps\**" />
+    <None Remove="resources\maps\**" />
+    <Page Remove="resources\maps\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="resources\loupe.jpg" />
     <None Remove="resources\loupe2.png" />
   </ItemGroup>
@@ -38,10 +45,6 @@
     <Resource Include="resources\loupe2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="resources\maps\" />
   </ItemGroup>
 
   <ItemGroup>

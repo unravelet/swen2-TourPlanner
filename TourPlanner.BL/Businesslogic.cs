@@ -40,11 +40,19 @@ namespace TourPlanner.BL {
             Tour tour = new Tour(Guid.NewGuid().ToString(), name, description, startAddress, startAddressNum, startZip, startCountry, endAddress, endAddressNum,
                 endZip, endCountry, transp, startCity, endCity);
 
-            tour = await _mapQuestService.getTourData(tour);
+            try
+            {
+                tour = await _mapQuestService.getTourData(tour);
 
-            _mapQuestService.getStaticMap(tour);
+                _mapQuestService.getStaticMap(tour);
 
-            _tourRepo.Create(tour);
+                _tourRepo.Create(tour);
+            }
+            catch(Exception ex)
+            {
+                _logger.Warn($"Tour [Name:{tour.Name}] wasnt created exception: {ex.InnerException}");
+                return;
+            }
 
             _logger.Debug($"Created tour {tour.Id} at {DateTime.Now}");
         }
