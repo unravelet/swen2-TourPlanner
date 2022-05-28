@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TourPlanner"
         xmlns:views="clr-namespace:TourPlanner.Views"
         mc:Ignorable="d"
-        Title="Tour-Planner" Height="450" Width="800" MinHeight="437" MinWidth="650"
+        Title="Tour-Planner" Height="714" Width="860" MinHeight="437" MinWidth="650"
         DataContext="{Binding MainViewModel, Source={StaticResource IoCConfig2}}">
     <Window.Resources>
         <ResourceDictionary>
@@ -38,12 +38,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MinWidth="130" MaxWidth="260"></ColumnDefinition>
                 <ColumnDefinition Width="7"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"></RowDefinition>
-                <RowDefinition Height="2*" MinHeight="160"></RowDefinition>
+                <RowDefinition Height="3*" MinHeight="160"></RowDefinition>
                 <RowDefinition Height="7"></RowDefinition>
                 <RowDefinition Height="*" MinHeight="80"></RowDefinition>
             </Grid.RowDefinitions>

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels {
@@ -8,14 +9,20 @@ namespace TourPlanner.ViewModels {
         private EditTourViewModel _etvm;
         private TourViewModel _tvm;
         private DetailsViewModel _detailsvm;
-        public ListViewModel(MainViewModel mvm, LogViewModel logvm, EditTourViewModel etvm, TourViewModel tvm, DetailsViewModel dvm) {
+        private RouteViewModel _routevm;
+        public ListViewModel(MainViewModel mvm, LogViewModel logvm, EditTourViewModel etvm, TourViewModel tvm,
+            DetailsViewModel dvm, RouteViewModel rvm) {
             _mvm = mvm;
             _logvm = logvm;
             _etvm = etvm;
             _tvm = tvm;
             _detailsvm = dvm;
+            _routevm = rvm;
 
             ShowTourList();
+            if (_selectedItem != null) {
+                SetProperties();
+            }
 
             OpenTourWindowCommand = new DelegateCommand(
                 o => true,
@@ -47,6 +54,13 @@ namespace TourPlanner.ViewModels {
                 }
                 );
 
+            UpdateCommand = new DelegateCommand(
+                o => true,
+                o => {
+                    TourCollection = _mvm.BL.GetTourCollection();
+                }
+                );
+
         }
         private Tour _selectedItem;
         public Tour SelectedItem {
@@ -72,6 +86,7 @@ namespace TourPlanner.ViewModels {
         public DelegateCommand OpenTourWindowCommand { get; set; }
         public DelegateCommand DeleteTourCommand { get; set; }
         public DelegateCommand EditTourCommand { get; set; }
+        public DelegateCommand UpdateCommand { get; set; }
 
         private ObservableCollection<Tour> _tourCollection;
         public ObservableCollection<Tour> TourCollection {
@@ -89,6 +104,7 @@ namespace TourPlanner.ViewModels {
 
         public void ShowTourList() {
             TourCollection = _mvm.BL.GetTourCollection();
+            
         }
 
         public bool IsItemSelected() {
@@ -116,6 +132,9 @@ namespace TourPlanner.ViewModels {
             _detailsvm.EndCity = _selectedItem.EndCity;
             _detailsvm.EndZip = _selectedItem.EndZip;
             _detailsvm.EndCountry = _selectedItem.EndCountry;
+
+
+            _routevm.Source = $"{Environment.CurrentDirectory}" + $"/img/{_selectedItem.Id}.jpg";
         }
 
     }

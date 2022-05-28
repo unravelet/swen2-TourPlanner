@@ -63,7 +63,7 @@ namespace TourPlanner.BL {
 
             //TourCollection = _tourRepo.ReadAll();
 
-            
+
             return _tourRepo.ReadAll();
         }
 
