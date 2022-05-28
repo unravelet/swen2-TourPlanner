@@ -23,6 +23,8 @@ namespace TourPlanner {
 
             //Services
             services.AddSingleton<MapQuestService>();
+            services.AddSingleton<ReportService>();
+            services.AddSingleton<UserInputService>();
 
             //Businesslogic
             services.AddSingleton<Businesslogic>();
@@ -37,6 +39,7 @@ namespace TourPlanner {
             services.AddSingleton<RouteViewModel>();
             services.AddSingleton<DetailsViewModel>();
             services.AddSingleton<TourViewModel>();
+            services.AddSingleton<MenuViewModel>();
             services.AddSingleton<ListViewModel>();
 
             _serviceProvider = services.BuildServiceProvider();
@@ -61,6 +64,8 @@ namespace TourPlanner {
             => _serviceProvider.GetService<DetailsViewModel>();
         public TourViewModel TourViewModel
             => _serviceProvider.GetService<TourViewModel>();
+        public MenuViewModel MenuViewModel
+            => _serviceProvider.GetService<MenuViewModel>();
         public ListViewModel ListViewModel
             => _serviceProvider.GetService<ListViewModel>();
 
