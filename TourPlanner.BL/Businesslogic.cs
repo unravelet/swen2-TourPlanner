@@ -13,6 +13,7 @@ namespace TourPlanner.BL {
         private Database _db;
         private TourRepository _tourRepo;
         private TourLogRepository _tourLogRepo;
+        private ILoggerWrapper _logger;
 
         public ObservableCollection<Tour> TourCollection { get; set; }
 
@@ -23,6 +24,8 @@ namespace TourPlanner.BL {
             _tourLogRepo = tlrp;
 
             _mapQuestService = mqs;
+
+            _logger = LoggerFactory.GetLogger();
         }
 
         public async void CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
@@ -38,6 +41,8 @@ namespace TourPlanner.BL {
             _mapQuestService.getStaticMap(tour);
 
             _tourRepo.Create(tour);
+
+            _logger.Debug($"Created tour {tour.Id} at {DateTime.Now}");
         }
 
         public bool CanCreateTour(string name, string startAddress, string startAddressNum, string startZip, string startCountry,

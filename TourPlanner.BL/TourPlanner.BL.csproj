@@ -24,4 +24,10 @@
     <ProjectReference Include="..\TourPlanner.Models\TourPlanner.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="log4net.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
