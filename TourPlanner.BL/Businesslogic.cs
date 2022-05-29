@@ -16,11 +16,13 @@ namespace TourPlanner.BL {
         private TourRepository _tourRepo;
         private TourLogRepository _tourLogRepo;
         private ILoggerWrapper _logger;
+        private ExportImportService _exportImportService;
 
         public ObservableCollection<Tour> TourCollection { get; set; }
 
 
-        public Businesslogic(MapQuestService mqs, Database db, TourRepository trp, TourLogRepository tlrp, ReportService rs, UserInputService uis) {
+        public Businesslogic(MapQuestService mqs, Database db, TourRepository trp, TourLogRepository tlrp, ReportService rs, UserInputService uis,
+            ExportImportService eis) {
             _db = db;
             _tourRepo = trp;
             _tourLogRepo = tlrp;
@@ -30,6 +32,7 @@ namespace TourPlanner.BL {
             _logger = LoggerFactory.GetLogger();
             _reportService = rs;
             _userInputService = uis;
+            _exportImportService = eis;
         }
 
         public async void CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
@@ -124,7 +127,10 @@ namespace TourPlanner.BL {
             _reportService.GenerateSummary(GetTourCollection());
         }
 
-        
+        public void ExportTour(Tour tour) {
+
+            _exportImportService.ExportTour(tour);
+        }
 
 
     }

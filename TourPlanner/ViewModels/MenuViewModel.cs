@@ -20,10 +20,15 @@ namespace TourPlanner.ViewModels {
                 o => true,
                 o => _mvm.BL.TourSummary()
                 );
+
+            ExportTourCommand = new DelegateCommand(
+                o => true,
+                o => _mvm.BL.ExportTour(SelectedTour)
+                );
         }
 
-        public DelegateCommand ExportAllCommand { get; set; }
-        public DelegateCommand ExportSelectedCommand { get; set; }
+        public DelegateCommand ImportCommand { get; set; }
+        public DelegateCommand ExportTourCommand { get; set; }
 
         public DelegateCommand SelectedReportCommand { get; set; }
         public DelegateCommand AllReportCommand { get; set; }

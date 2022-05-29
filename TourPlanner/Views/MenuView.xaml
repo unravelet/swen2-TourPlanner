@@ -13,7 +13,7 @@
         <MenuItem Header="File">
             <MenuItem Header="Open"></MenuItem>
             <MenuItem Header="Import"></MenuItem>
-            <MenuItem Header="Export"></MenuItem>
+            <MenuItem Header="Export" Command="{Binding ExportTourCommand}"></MenuItem>
             <MenuItem Header="Generate Summary" Command="{Binding AllReportCommand}"></MenuItem>
             <MenuItem Header="Generate Report" Command="{Binding SelectedReportCommand}"></MenuItem>
             <MenuItem Header="Close"></MenuItem>
