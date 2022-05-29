@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json.Linq;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using TourPlanner.BL.Services;
 using TourPlanner.DAL.DB;
 using TourPlanner.DAL.Repositories;
@@ -8,7 +6,7 @@ using TourPlanner.Models;
 
 namespace TourPlanner.BL {
     public class Businesslogic {
-        
+
         private MapQuestService _mapQuestService;
         private ReportService _reportService;
         private UserInputService _userInputService;
@@ -16,11 +14,11 @@ namespace TourPlanner.BL {
         private TourRepository _tourRepo;
         private TourLogRepository _tourLogRepo;
         private ILoggerWrapper _logger;
+        private ExportImportService _exportImportService;
 
-        public ObservableCollection<Tour> TourCollection { get; set; }
 
-
-        public Businesslogic(MapQuestService mqs, Database db, TourRepository trp, TourLogRepository tlrp, ReportService rs, UserInputService uis) {
+        public Businesslogic(MapQuestService mqs, Database db, TourRepository trp, TourLogRepository tlrp, ReportService rs, UserInputService uis,
+            ExportImportService eis) {
             _db = db;
             _tourRepo = trp;
             _tourLogRepo = tlrp;
@@ -30,6 +28,7 @@ namespace TourPlanner.BL {
             _logger = LoggerFactory.GetLogger();
             _reportService = rs;
             _userInputService = uis;
+            _exportImportService = eis;
         }
 
         public async void CreateTour(string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
@@ -40,8 +39,7 @@ namespace TourPlanner.BL {
             Tour tour = new Tour(Guid.NewGuid().ToString(), name, description, startAddress, startAddressNum, startZip, startCountry, endAddress, endAddressNum,
                 endZip, endCountry, transp, startCity, endCity);
 
-            try
-            {
+            try {
                 tour = await _mapQuestService.getTourData(tour);
 
                 _mapQuestService.getStaticMap(tour);
@@ -60,31 +58,21 @@ namespace TourPlanner.BL {
         public bool CanCreateTour(string name, string startAddress, string startAddressNum, string startZip, string startCountry,
             string endAddress, string endAddressNum, string endZip, string endCountry, string startCity, string endCity) {
 
-            return !String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(startAddress) && !String.IsNullOrEmpty(startAddressNum) &&
-                !String.IsNullOrEmpty(startZip) && !String.IsNullOrEmpty(startCountry) && !String.IsNullOrEmpty(endAddress) &&
-                !String.IsNullOrEmpty(endAddressNum) && !String.IsNullOrEmpty(endZip) && !String.IsNullOrEmpty(endCountry) && !String.IsNullOrEmpty(startCity)
-                && !String.IsNullOrEmpty(endCity);
+            return _userInputService.CanCreateTour(name, startAddress, startAddressNum, startZip, startCountry,
+            endAddress, endAddressNum, endZip, endCountry, startCity, endCity);
 
         }
         public bool CanCreateTourLog(string date, string duration, string distance, string rating, string difficulty) {
 
-            return !String.IsNullOrEmpty(date) && !String.IsNullOrEmpty(duration) && !String.IsNullOrEmpty(distance) &&
-                !String.IsNullOrEmpty(rating) && !String.IsNullOrEmpty(difficulty);
+            return _userInputService.CanCreateTourLog(date, duration, distance, rating, difficulty);
 
         }
 
 
 
         public ObservableCollection<Tour> GetTourCollection() {
-            try
-            {
-                return _tourRepo.ReadAll();
-            }
-            catch (Exception ex)
-            {
-                _logger.Error($"Could not get tour collection from Database exception: {ex.InnerException}");
-                return new ObservableCollection<Tour>();
-            }
+            
+            return _tourRepo.ReadAll();
         }
 
 
@@ -169,9 +157,9 @@ namespace TourPlanner.BL {
             }
         }
 
-        
+
         public void SingleReport(Tour tour) {
-            
+
             _reportService.GenerateSingleReport(tour, GetTourLogs(tour.Id));
         }
 
@@ -180,7 +168,15 @@ namespace TourPlanner.BL {
             _reportService.GenerateSummary(GetTourCollection());
         }
 
-        
+        public void ExportTour(Tour tour) {
+
+            _exportImportService.ExportTour(tour);
+        }
+
+        public void ImportTour(string fileName) {
+           
+            _tourRepo.Create(_exportImportService.ImportTour(fileName)); 
+        }
 
 
     }

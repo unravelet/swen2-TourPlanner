@@ -25,6 +25,8 @@ namespace TourPlanner {
             services.AddSingleton<MapQuestService>();
             services.AddSingleton<ReportService>();
             services.AddSingleton<UserInputService>();
+            services.AddSingleton<ExportImportService>();
+
 
             //Businesslogic
             services.AddSingleton<Businesslogic>();
