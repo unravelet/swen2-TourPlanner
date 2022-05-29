@@ -25,7 +25,7 @@ namespace TourPlanner.BL {
 
             _mapQuestService = mqs;
 
-            _logger = LoggerFactory.GetLogger();
+            _logger = LoggerFactory.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
             _reportService = rs;
             _userInputService = uis;
             _exportImportService = eis;
@@ -48,7 +48,7 @@ namespace TourPlanner.BL {
             }
             catch(Exception ex)
             {
-                _logger.Error($"Tour [Name:{tour.Name}] wasnt created exception: {ex.InnerException}");
+                _logger.Error($"Tour [Name:{tour.Name}] wasnt created exception: {ex.Message} stackinfo: {ex.InnerException}");
                 return;
             }
 
@@ -71,8 +71,15 @@ namespace TourPlanner.BL {
 
 
         public ObservableCollection<Tour> GetTourCollection() {
-            
-            return _tourRepo.ReadAll();
+            try
+            {
+                return _tourRepo.ReadAll();
+            }
+            catch(Exception ex)
+            {
+                _logger.Error($"Could not get tourcollection exception: {ex.Message} stackinfo: {ex.StackTrace}");
+                return new ObservableCollection<Tour>();
+            }
         }
 
 

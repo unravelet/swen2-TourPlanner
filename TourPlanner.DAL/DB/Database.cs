@@ -18,7 +18,6 @@ namespace TourPlanner.DAL.DB {
             }
             catch (Exception ex)
             {
-                
             }
 
         }

@@ -10,7 +10,7 @@ namespace TourPlanner.BL.Services
     {
         private log4net.ILog logger;
 
-        public static Log4NetWrapper CreateLogger(string configPath)
+        public static Log4NetWrapper CreateLogger(string configPath, Type owner)
         {
             if (!File.Exists(configPath))
             {
@@ -18,7 +18,7 @@ namespace TourPlanner.BL.Services
             }
 
             log4net.Config.XmlConfigurator.Configure(new FileInfo(configPath));
-            var logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            var logger = log4net.LogManager.GetLogger(owner);
             return new Log4NetWrapper(logger);
         }
 

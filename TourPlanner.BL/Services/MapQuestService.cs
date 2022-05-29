@@ -24,7 +24,7 @@ namespace TourPlanner.BL.Services
             string path = Environment.CurrentDirectory + "/img";
             Directory.CreateDirectory(path);
 
-            _logger = LoggerFactory.GetLogger();
+            _logger = LoggerFactory.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         }
 
         public async Task<Tour> getTourData(Tour userInput)
@@ -41,7 +41,7 @@ namespace TourPlanner.BL.Services
                                                                     $",{userInput.EndZip}" +
                                                               $"&routType={userInput.TransportType}";
 
-                _logger.Debug($"Sending request to RouteApi: {tmpUrl}");
+                _logger.Debug($"Sending request to RouteApi for tour [ID:{userInput.Id}]: {tmpUrl}");
 
                 using (HttpResponseMessage response = await _client.GetAsync(tmpUrl))
                 {
@@ -59,6 +59,7 @@ namespace TourPlanner.BL.Services
                         userInput.EndLng = (string)o["route"]["locations"][1]["latLng"]["lng"];
 
                         //
+                        _logger.Debug($"Request for tour [ID:{userInput.Id}] successful Content: {userInput.StartLat}, {userInput.StartLng}, {userInput.EndLat}, {userInput.EndLng}");
                         return userInput;
                     }
                 }
@@ -86,13 +87,15 @@ namespace TourPlanner.BL.Services
             {
                 string tmpUrl = _staticMapApi + $"?key={_key}&start={tour.StartLat},{tour.StartLng}&end={tour.EndLat},{tour.EndLng}&size=500,500@2x";
 
-                _logger.Debug($"Sending request to staticMapApi: {tmpUrl}");
+                _logger.Debug($"Sending request for tour [ID:{tour.Id}] to staticMapApi: {tmpUrl}");
 
                 using (HttpResponseMessage response = await _client.GetAsync(tmpUrl))
                 {
                     byte[] image = await response.Content.ReadAsByteArrayAsync();
                     saveTourImage(image, tour.Id);
                 }
+
+                _logger.Debug($"Image request for tour [ID:{tour.Id}] successful");
             }
             catch (WebException we)
             {
