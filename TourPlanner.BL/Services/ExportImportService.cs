@@ -27,7 +27,7 @@ namespace TourPlanner.BL.Services {
 
         }
 
-        public Tour ImporttTour(string jsonString) {
+        public Tour ImportTour(string jsonString) {
             if(jsonString == null) {
                 Tour emptyTour = new Tour("", "Import failed", "", "", "", "", "", "", "", "", "", Tour.transportType.car, "", "");
                 return emptyTour;

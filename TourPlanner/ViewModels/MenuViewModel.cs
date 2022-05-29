@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Win32;
+using System.IO;
 using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels {
     public class MenuViewModel : BaseViewModel {
         private MainViewModel _mvm;
-        public MenuViewModel(MainViewModel mvm)  {
+        public MenuViewModel(MainViewModel mvm) {
             _mvm = mvm;
 
             SelectedReportCommand = new DelegateCommand(
@@ -22,16 +19,37 @@ namespace TourPlanner.ViewModels {
                 );
 
             ExportTourCommand = new DelegateCommand(
-                o => true,
+                o => IsItemSelected(),
                 o => _mvm.BL.ExportTour(SelectedTour)
+                );
+
+            ImportTourCommand = new DelegateCommand(
+                o => true,
+                o => {
+                    _mvm.BL.ImportTour(OpenFile());
+                } 
                 );
         }
 
-        public DelegateCommand ImportCommand { get; set; }
+        public DelegateCommand ImportTourCommand { get; set; }
         public DelegateCommand ExportTourCommand { get; set; }
 
         public DelegateCommand SelectedReportCommand { get; set; }
         public DelegateCommand AllReportCommand { get; set; }
+
+        private string OpenFile() {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == true) {
+                return File.ReadAllText(openFileDialog.FileName);
+            }
+            else {
+                return null;
+            }
+                
+
+        }
+
 
         public bool IsItemSelected() {
             if (SelectedTour == null) {

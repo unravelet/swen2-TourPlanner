@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json.Linq;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using TourPlanner.BL.Services;
 using TourPlanner.DAL.DB;
 using TourPlanner.DAL.Repositories;
@@ -8,7 +6,7 @@ using TourPlanner.Models;
 
 namespace TourPlanner.BL {
     public class Businesslogic {
-        
+
         private MapQuestService _mapQuestService;
         private ReportService _reportService;
         private UserInputService _userInputService;
@@ -17,8 +15,6 @@ namespace TourPlanner.BL {
         private TourLogRepository _tourLogRepo;
         private ILoggerWrapper _logger;
         private ExportImportService _exportImportService;
-
-        public ObservableCollection<Tour> TourCollection { get; set; }
 
 
         public Businesslogic(MapQuestService mqs, Database db, TourRepository trp, TourLogRepository tlrp, ReportService rs, UserInputService uis,
@@ -43,16 +39,14 @@ namespace TourPlanner.BL {
             Tour tour = new Tour(Guid.NewGuid().ToString(), name, description, startAddress, startAddressNum, startZip, startCountry, endAddress, endAddressNum,
                 endZip, endCountry, transp, startCity, endCity);
 
-            try
-            {
+            try {
                 tour = await _mapQuestService.getTourData(tour);
 
                 _mapQuestService.getStaticMap(tour);
 
                 _tourRepo.Create(tour);
             }
-            catch(Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.Warn($"Tour [Name:{tour.Name}] wasnt created exception: {ex.InnerException}");
                 return;
             }
@@ -63,23 +57,20 @@ namespace TourPlanner.BL {
         public bool CanCreateTour(string name, string startAddress, string startAddressNum, string startZip, string startCountry,
             string endAddress, string endAddressNum, string endZip, string endCountry, string startCity, string endCity) {
 
-            return !String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(startAddress) && !String.IsNullOrEmpty(startAddressNum) &&
-                !String.IsNullOrEmpty(startZip) && !String.IsNullOrEmpty(startCountry) && !String.IsNullOrEmpty(endAddress) &&
-                !String.IsNullOrEmpty(endAddressNum) && !String.IsNullOrEmpty(endZip) && !String.IsNullOrEmpty(endCountry) && !String.IsNullOrEmpty(startCity)
-                && !String.IsNullOrEmpty(endCity);
+            return _userInputService.CanCreateTour(name, startAddress, startAddressNum, startZip, startCountry,
+            endAddress, endAddressNum, endZip, endCountry, startCity, endCity);
 
         }
         public bool CanCreateTourLog(string date, string duration, string distance, string rating, string difficulty) {
 
-            return !String.IsNullOrEmpty(date) && !String.IsNullOrEmpty(duration) && !String.IsNullOrEmpty(distance) &&
-                !String.IsNullOrEmpty(rating) && !String.IsNullOrEmpty(difficulty);
+            return _userInputService.CanCreateTourLog(date, duration, distance, rating, difficulty);
 
         }
 
 
 
         public ObservableCollection<Tour> GetTourCollection() {
-            
+
             return _tourRepo.ReadAll();
         }
 
@@ -116,9 +107,9 @@ namespace TourPlanner.BL {
             return _tourLogRepo.GetTourLogs(tourId);
         }
 
-        
+
         public void SingleReport(Tour tour) {
-            
+
             _reportService.GenerateSingleReport(tour, GetTourLogs(tour.Id));
         }
 
@@ -130,6 +121,11 @@ namespace TourPlanner.BL {
         public void ExportTour(Tour tour) {
 
             _exportImportService.ExportTour(tour);
+        }
+
+        public void ImportTour(string fileName) {
+           
+            _tourRepo.Create(_exportImportService.ImportTour(fileName)); 
         }
 
 
