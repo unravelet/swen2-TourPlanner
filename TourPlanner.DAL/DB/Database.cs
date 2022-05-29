@@ -12,8 +12,14 @@ namespace TourPlanner.DAL.DB {
             JObject config = JObject.Parse(File.ReadAllText("appsettings.json"));
 
             conn = new NpgsqlConnection((string)config["connstr"]);
-
-            OpenCon();
+            try
+            {
+                OpenCon();
+            }
+            catch (Exception ex)
+            {
+                
+            }
 
         }
 
@@ -21,7 +27,7 @@ namespace TourPlanner.DAL.DB {
             if (conn.State == System.Data.ConnectionState.Open) {
                 return true;
             }
-            Console.WriteLine("opening connection to database");
+            Console.WriteLine("opening connection to database...");
             conn.Open();
 
             if (conn.State == System.Data.ConnectionState.Open) {

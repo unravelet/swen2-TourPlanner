@@ -41,6 +41,8 @@ namespace TourPlanner.BL.Services
                                                                     $",{userInput.EndZip}" +
                                                               $"&routType={userInput.TransportType}";
 
+                _logger.Debug($"Sending request to RouteApi: {tmpUrl}");
+
                 using (HttpResponseMessage response = await _client.GetAsync(tmpUrl))
                 {
                     using (HttpContent content = response.Content)
@@ -49,9 +51,6 @@ namespace TourPlanner.BL.Services
                         Console.WriteLine(mycontent);
 
                         JObject o = JObject.Parse(mycontent);
-
-                        Console.WriteLine(o["route"]);
-                        Console.WriteLine("---------------------------------------------------------------------------------");
                         //Startpoint
                         userInput.StartLat = (string)o["route"]["locations"][0]["latLng"]["lat"];
                         userInput.StartLng = (string)o["route"]["locations"][0]["latLng"]["lng"];
@@ -87,6 +86,8 @@ namespace TourPlanner.BL.Services
             {
                 string tmpUrl = _staticMapApi + $"?key={_key}&start={tour.StartLat},{tour.StartLng}&end={tour.EndLat},{tour.EndLng}&size=500,500@2x";
 
+                _logger.Debug($"Sending request to staticMapApi: {tmpUrl}");
+
                 using (HttpResponseMessage response = await _client.GetAsync(tmpUrl))
                 {
                     byte[] image = await response.Content.ReadAsByteArrayAsync();
@@ -119,7 +120,6 @@ namespace TourPlanner.BL.Services
             string readText = File.ReadAllText(path);
 
             return readText;
-
         }
     }
 }
