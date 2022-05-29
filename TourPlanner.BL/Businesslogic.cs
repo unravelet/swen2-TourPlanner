@@ -128,6 +128,17 @@ namespace TourPlanner.BL {
             _tourRepo.Create(_exportImportService.ImportTour(fileName)); 
         }
 
+        
+
+        public bool IsZip(string zip) {
+            
+            
+            return _userInputService.IsZip(_userInputService.ParseInputToInt(zip));
+        }
+
+        public bool IsAddNum(string addNum) {
+            return _userInputService.IsAddressNumber(_userInputService.ParseInputToInt(addNum));
+        }
 
     }
 }

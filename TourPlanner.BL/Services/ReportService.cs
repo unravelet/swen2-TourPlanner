@@ -102,6 +102,7 @@ namespace TourPlanner.BL.Services {
         void AddTourInfo(Document document, Tour tour) {
             string FROM_ADDRESS = $"{tour.StartAddress} {tour.StartAddressNum}, {tour.StartZip} {tour.StartCity}, {tour.StartCountry}";
             string TO_ADDRESS = $"{tour.EndAddress} {tour.EndAddressNum}, {tour.EndZip} {tour.EndCity}, {tour.EndCountry}";
+            string TRANSPORT = $"Transport: {tour.TransportType.ToString()}";
 
 
             Paragraph TourName = new Paragraph(tour.Name)
@@ -113,6 +114,10 @@ namespace TourPlanner.BL.Services {
             Paragraph Description = new Paragraph("Description").SetBold();
             document.Add(Description);
             document.Add(new Paragraph(tour.Description));
+
+            AddNewLine(document);
+
+            document.Add(new Paragraph(TRANSPORT));
 
             AddNewLine(document);
 

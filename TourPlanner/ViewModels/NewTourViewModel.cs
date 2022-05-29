@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace TourPlanner.ViewModels {
@@ -14,8 +15,7 @@ namespace TourPlanner.ViewModels {
 
 
             CreateTourCommand = new DelegateCommand(
-                (o) => _mvm.BL.CanCreateTour(Name, StartAddress, StartAddressNumber, StartZip, StartCountry,
-                    EndAddress, EndAddressNumber, EndZip, EndCountry, StartCity, EndCity)
+                (o) => CanCreateTour()
                 ,
                 (o) => {
                     if (Description == null) {
@@ -51,6 +51,17 @@ namespace TourPlanner.ViewModels {
                 }
             }
             SetEmpty();
+        }
+
+        public bool CanCreateTour() {
+            if(_mvm.BL.CanCreateTour(Name, StartAddress, StartAddressNumber, StartZip, StartCountry,
+                    EndAddress, EndAddressNumber, EndZip, EndCountry, StartCity, EndCity)
+                && _isStartZipValid && _isStartAddNumValid && _isEndZipValid && _isEndAddNumValid) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
 
@@ -151,13 +162,20 @@ namespace TourPlanner.ViewModels {
             }
         }
 
-
+        bool _isStartAddNumValid;
         string _startAddressNumber;
         public string StartAddressNumber {
             get => _startAddressNumber;
 
             set {
                 if (_startAddressNumber != value) {
+                    if (ValidateAddNum(value)) {
+                        _isStartAddNumValid = true;
+                    }
+                    else {
+                        _isStartAddNumValid = false;
+                    }
+
                     _startAddressNumber = value;
                     OnPropertyChanged();
                     CreateTourCommand.RaiseCanExecuteChanged();
@@ -165,17 +183,38 @@ namespace TourPlanner.ViewModels {
             }
         }
 
+        public bool ValidateAddNum(string value) {
+            return _mvm.BL.IsAddNum(value);
+        }
+
+        bool _isStartZipValid;
+
         string _startZip;
+
         public string StartZip {
             get => _startZip;
 
             set {
                 if (_startZip != value) {
+
+                    if (ValidateZip(value)) {
+                        _isStartZipValid = true;
+                    }
+                    else {
+                        _isStartZipValid = false;
+                    }
+                    
+                    
                     _startZip = value;
                     OnPropertyChanged();
                     CreateTourCommand.RaiseCanExecuteChanged();
                 }
             }
+        }
+
+        private bool ValidateZip(string value) {
+            return _mvm.BL.IsZip(value);
+                
         }
 
         string _startCountry;
@@ -218,12 +257,22 @@ namespace TourPlanner.ViewModels {
             }
 
         }
+
+
+        bool _isEndAddNumValid;
         string _endAddressNumber;
         public string EndAddressNumber {
             get => _endAddressNumber;
 
             set {
                 if (_endAddressNumber != value) {
+                    if (ValidateAddNum(value)) {
+                        _isEndAddNumValid = true;
+                    }
+                    else {
+                        _isEndAddNumValid = false;
+                    }
+
                     _endAddressNumber = value;
                     OnPropertyChanged();
                     CreateTourCommand.RaiseCanExecuteChanged();
@@ -231,12 +280,21 @@ namespace TourPlanner.ViewModels {
             }
 
         }
+
+        bool _isEndZipValid;
         string _endZip;
         public string EndZip {
             get => _endZip;
 
             set {
                 if (_endZip != value) {
+
+                    if (ValidateZip(value)) {
+                        _isEndZipValid = true;
+                    }
+                    else {
+                        _isEndZipValid = false;
+                    }
                     _endZip = value;
                     OnPropertyChanged();
                     CreateTourCommand.RaiseCanExecuteChanged();

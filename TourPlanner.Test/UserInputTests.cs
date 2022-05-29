@@ -251,6 +251,35 @@ namespace TourPlanner.Test {
 
         }
 
+        [Test]
+        public void ParseInputToIntTest() {
+            //arrange
+            UserInputService uiService = new UserInputService();
+
+            //act
+            string input = "56";
+            int parsed = uiService.ParseInputToInt(input);
+
+
+            //assert
+            Assert.AreEqual(parsed, 56);
+
+        }
+
+        [Test]
+        public void ParseInputToIntFailTest() {
+            //arrange
+            UserInputService uiService = new UserInputService();
+
+            //act
+            string input = "56ff";
+            int parsed = uiService.ParseInputToInt(input);
+
+            //assert
+            Assert.AreEqual(parsed,0);
+
+        }
+
 
     }
 }

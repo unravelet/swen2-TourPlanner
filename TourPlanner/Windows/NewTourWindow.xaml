@@ -65,7 +65,7 @@
         <TextBox Name="StartAddressNumber" Text="{Binding StartAddressNumber}" Grid.Column="4" Grid.Row="7"></TextBox>
 
         <Label Grid.Column="1" Grid.Row="9" Content="ZIP*:"></Label>
-        <TextBox Name="StartZip" Text="{Binding StartZip}" Grid.Column="2" Grid.Row="9"></TextBox>
+        <TextBox Name="StartZip" Text="{Binding StartZip, ValidatesOnExceptions=True}"   Grid.Column="2" Grid.Row="9"></TextBox>
 
         <Label Grid.Column="1" Grid.Row="11" Content="City*:"></Label>
         <TextBox Text="{Binding StartCity}" Grid.Column="2" Grid.Row="11"></TextBox>

@@ -25,9 +25,7 @@ namespace TourPlanner.ViewModels {
 
             ImportTourCommand = new DelegateCommand(
                 o => true,
-                o => {
-                    _mvm.BL.ImportTour(OpenFile());
-                } 
+                o => _mvm.BL.ImportTour(OpenFile())
                 );
         }
 
@@ -46,12 +44,10 @@ namespace TourPlanner.ViewModels {
             else {
                 return null;
             }
-                
-
         }
 
 
-        public bool IsItemSelected() {
+        private bool IsItemSelected() {
             if (SelectedTour == null) {
                 return false;
             }

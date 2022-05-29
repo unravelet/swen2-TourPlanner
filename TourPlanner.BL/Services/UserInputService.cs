@@ -11,24 +11,34 @@ namespace TourPlanner.BL.Services {
         public UserInputService() { }
 
 
-        public int AddressNum { get; private set; }
-        public int Zip { get; private set; }
+        public int Num { get; private set; }
+        
 
         public bool IsInputInt(string input) {
 
             if (int.TryParse(input, out int n)) {
-                AddressNum = n;
+                Num = n;
                 return true;
             }
             else {
-                AddressNum = 0;
+                Num = 0;
                 return false;
             }
         }
 
+        public int ParseInputToInt(string input) {
+            if (int.TryParse(input, out int n)) {
+                return n;
+            }
+            else {
+                return 0;
+            }
+        }
+
+
         public bool IsAddressNumber(int num) {
             //worlds highest address number
-            if(num <= 986039 && num > 1) {
+            if(num <= 986039 && num >= 1) {
                 return true;
             }
             else {
