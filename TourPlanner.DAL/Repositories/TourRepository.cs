@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System.Collections.ObjectModel;
+using System.Runtime.ExceptionServices;
 using TourPlanner.DAL.DB;
 using TourPlanner.Models;
 
@@ -96,32 +97,40 @@ namespace TourPlanner.DAL.Repositories {
             var list = new ObservableCollection<Tour>();
             string sql = "SELECT * FROM tours";
             NpgsqlCommand cmd = new NpgsqlCommand(sql);
+            try
+            {
+                using (NpgsqlDataReader reader = _db.ExecuteQuery(cmd))
+                {
+                    while (reader.Read())
+                    {
+                        Tour tour = new Tour(reader.GetValue(0).ToString(), //id
+                            reader.GetValue(1).ToString(),                  //name
+                            reader.GetValue(2).ToString(),                  //description
+                            reader.GetValue(3).ToString(),                  //startadd
+                            reader.GetValue(4).ToString(),                  //startaddnum
+                            reader.GetValue(5).ToString(),                  //startzip
+                            reader.GetValue(6).ToString(),                  //startcountry
+                            reader.GetValue(7).ToString(),                  //endadd
+                            reader.GetValue(8).ToString(),                  //endaddnum
+                            reader.GetValue(9).ToString(),                  //endzip
+                            reader.GetValue(10).ToString(),                 //endcountry
+                            (Tour.transportType)reader.GetValue(11),        //transport
+                            reader.GetValue(12).ToString(),                 //startcity
+                            reader.GetValue(13).ToString());                //endcity
+                        tour.StartLat = reader.GetValue(14).ToString();
+                        tour.StartLng = reader.GetValue(15).ToString();
+                        tour.EndLat = reader.GetValue(16).ToString();
+                        tour.EndLng = reader.GetValue(17).ToString();
 
-            using (NpgsqlDataReader reader = _db.ExecuteQuery(cmd)) {
-                while (reader.Read()) {
-                    Tour tour = new Tour(reader.GetValue(0).ToString(), //id
-                        reader.GetValue(1).ToString(),                  //name
-                        reader.GetValue(2).ToString(),                  //description
-                        reader.GetValue(3).ToString(),                  //startadd
-                        reader.GetValue(4).ToString(),                  //startaddnum
-                        reader.GetValue(5).ToString(),                  //startzip
-                        reader.GetValue(6).ToString(),                  //startcountry
-                        reader.GetValue(7).ToString(),                  //endadd
-                        reader.GetValue(8).ToString(),                  //endaddnum
-                        reader.GetValue(9).ToString(),                  //endzip
-                        reader.GetValue(10).ToString(),                 //endcountry
-                        (Tour.transportType)reader.GetValue(11),        //transport
-                        reader.GetValue(12).ToString(),                 //startcity
-                        reader.GetValue(13).ToString());                //endcity
-                    tour.StartLat = reader.GetValue(14).ToString();    
-                    tour.StartLng = reader.GetValue(15).ToString();     
-                    tour.EndLat = reader.GetValue(16).ToString();
-                    tour.EndLng = reader.GetValue(17).ToString();
+                        list.Add(tour);
 
-                    list.Add(tour);
-
+                    }
+                    return list;
                 }
-                return list;
+            }
+            catch
+            {
+                throw;
             }
         }
 

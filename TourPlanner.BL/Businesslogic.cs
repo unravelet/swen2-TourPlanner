@@ -25,7 +25,7 @@ namespace TourPlanner.BL {
 
             _mapQuestService = mqs;
 
-            _logger = LoggerFactory.GetLogger();
+            _logger = LoggerFactory.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
             _reportService = rs;
             _userInputService = uis;
             _exportImportService = eis;
@@ -46,8 +46,9 @@ namespace TourPlanner.BL {
 
                 _tourRepo.Create(tour);
             }
-            catch (Exception ex) {
-                _logger.Warn($"Tour [Name:{tour.Name}] wasnt created exception: {ex.InnerException}");
+            catch(Exception ex)
+            {
+                _logger.Error($"Tour [Name:{tour.Name}] wasnt created exception: {ex.Message} stackinfo: {ex.InnerException}");
                 return;
             }
 
@@ -70,41 +71,97 @@ namespace TourPlanner.BL {
 
 
         public ObservableCollection<Tour> GetTourCollection() {
-
-            return _tourRepo.ReadAll();
+            try
+            {
+                return _tourRepo.ReadAll();
+            }
+            catch(Exception ex)
+            {
+                _logger.Error($"Could not get tourcollection exception: {ex.Message} stackinfo: {ex.StackTrace}");
+                return new ObservableCollection<Tour>();
+            }
         }
 
 
         public void DeleteTour(string id) {
-            _tourRepo.Delete(id);
+            try
+            {
+                _tourRepo.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"Could not delete tour [ID:{id}] exception: {ex.InnerException}");
+            }
         }
-
         public void DeleteTourLog(string id) {
-            _tourLogRepo.Delete(id);
+            try
+            {
+                _tourLogRepo.Delete(id);
+            }
+            catch(Exception ex)
+            {
+                _logger.Error($"Could not delete tourlog [ID:{id}] exception: {ex.InnerException}");
+            }
         }
 
         public void UpdateTour(Tour tour) {
-            _tourRepo.Update(tour);
+            try
+            {
+                _tourRepo.Update(tour);
+            }
+            catch(Exception ex)
+            {
+                _logger.Error($"Could not update tour [ID:{tour.Id}] exception: {ex.InnerException}");
+            }
         }
 
         public void UpdateTourLog(TourLog tourlog) {
-            _tourLogRepo.Update(tourlog);
+            try
+            {
+                _tourLogRepo.Update(tourlog);
+            }
+            catch(Exception ex)
+            {
+                _logger.Error($"Could not update tourlog for tour [ID:{tourlog.TourId}] exception: {ex.InnerException}");
+            }
         }
 
         public Tour FindTour(string id) {
-            return _tourRepo.Read(id);
+            try
+            {
+                return _tourRepo.Read(id);
+            }
+            catch(Exception ex)
+            {
+                _logger.Error($"Could not find tour [ID:{id}] exception: {ex.InnerException}");
+                return new Tour("","","","","","","","","","","",Tour.transportType.car,"","");
+            }
         }
 
 
         public void CreateTourLog(string tourId, string date, string duration, string distance, string rating, string difficulty, string comment) {
 
             TourLog tourLog = new TourLog(Guid.NewGuid().ToString(), tourId, date, duration, distance, rating, difficulty, comment);
-            _tourLogRepo.Create(tourLog);
+            try
+            {
+                _tourLogRepo.Create(tourLog);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"tourlog for Tour [ID:{tourId}] was not created exception: {ex.InnerException}");
+            }
         }
 
         public ObservableCollection<TourLog> GetTourLogs(string tourId) {
-
-            return _tourLogRepo.GetTourLogs(tourId);
+            try
+            {
+                return _tourLogRepo.GetTourLogs(tourId);
+            }
+            catch(Exception ex)
+            {
+                _logger.Error($"Could not get tourlogs for tour [ID:{tourId}] exception: {ex.InnerException}");
+                return new ObservableCollection<TourLog>();
+            }
         }
 
 

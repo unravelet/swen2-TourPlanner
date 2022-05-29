@@ -8,9 +8,9 @@ namespace TourPlanner.BL.Services
 {
     public static class LoggerFactory
     {
-        public static ILoggerWrapper GetLogger()
+        public static ILoggerWrapper GetLogger(Type owner)
         {
-            return Log4NetWrapper.CreateLogger("./log4net.txt");
+            return Log4NetWrapper.CreateLogger("./log4net.txt", owner);
         }
     }
 }
