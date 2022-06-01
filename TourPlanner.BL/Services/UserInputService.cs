@@ -48,7 +48,7 @@ namespace TourPlanner.BL.Services {
 
         public bool IsZip(int num) {
             //highest and lowest zip
-            if(num <= 999999 && num >= 501) {
+            if(num <= 999999 && num >= 1) {
                return true;
             }
             else {
@@ -69,6 +69,17 @@ namespace TourPlanner.BL.Services {
 
             return !String.IsNullOrEmpty(date) && !String.IsNullOrEmpty(duration) && !String.IsNullOrEmpty(distance) &&
                 !String.IsNullOrEmpty(rating) && !String.IsNullOrEmpty(difficulty);
+
+        }
+
+
+        public bool isRating(int rating) {
+            if (rating >= 1 && rating <= 5) {
+                return true;
+            }
+            else {
+                return false;
+            }
 
         }
 

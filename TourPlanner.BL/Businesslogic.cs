@@ -197,5 +197,10 @@ namespace TourPlanner.BL {
             return _userInputService.IsAddressNumber(_userInputService.ParseInputToInt(addNum));
         }
 
+        public bool IsRating(string rating) {
+
+            return _userInputService.isRating(_userInputService.ParseInputToInt(rating));
+        }
+
     }
 }

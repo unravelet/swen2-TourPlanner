@@ -56,7 +56,7 @@ namespace TourPlanner.Test {
             UserInputService uiService = new UserInputService();
 
             //act
-            int input = 2;
+            int input = -2;
 
 
             //assert

@@ -12,7 +12,7 @@ namespace TourPlanner.ViewModels {
             _listvm = listvm;
 
             CreateTourLogCommand = new DelegateCommand(
-                (o) => _mvm.BL.CanCreateTourLog(Date, Duration, Distance, Rating, Difficulty)
+                (o) => CanCreateTourLog()
                 ,
                 (o) => {
                     _mvm.BL.CreateTourLog(_listvm.SelectedItem.Id, Date, Duration, Distance, Rating, Difficulty, Comment);
@@ -40,6 +40,16 @@ namespace TourPlanner.ViewModels {
                 }
             }
             SetEmpty();
+        }
+
+        private bool CanCreateTourLog() {
+            if(_mvm.BL.CanCreateTourLog(Date, Duration, Distance, Rating, Difficulty)
+                && _isRatingValid) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
 
@@ -89,11 +99,20 @@ namespace TourPlanner.ViewModels {
             }
         }
 
+        private bool _isRatingValid;
         private string _rating;
         public string Rating {
             get { return _rating; }
             set {
+
                 if (_rating != value) {
+                    if (_mvm.BL.IsRating(value)) {
+                        _isRatingValid = true;
+                    }
+                    else {
+                        _isRatingValid = false;
+                    }
+                    
                     _rating = value;
                     OnPropertyChanged();
                     CreateTourLogCommand.RaiseCanExecuteChanged();
