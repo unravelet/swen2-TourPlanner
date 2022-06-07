@@ -28,6 +28,7 @@
         public string ?StartLat { get; set; }
         public string ?EndLng { get; set; }
         public string ?EndLat { get; set; }
+        public double AvgRating { get; set; }
 
         public Tour(string id, string name, string description, string startAddress, string startAddressNum, string startZip, string startCountry,
             string endAddress, string endAddressNum, string endZip, string endCountry, transportType transportType, string startCity, string endCity) {
@@ -51,7 +52,7 @@
             StartCity = startCity;
             EndCity = endCity;
 
-
+            AvgRating = 0;
         }
 
     }

@@ -46,8 +46,7 @@ namespace TourPlanner.BL {
 
                 _tourRepo.Create(tour);
             }
-            catch(Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.Error($"Tour [Name:{tour.Name}] wasnt created exception: {ex.Message} stackinfo: {ex.InnerException}");
                 return;
             }
@@ -71,12 +70,10 @@ namespace TourPlanner.BL {
 
 
         public ObservableCollection<Tour> GetTourCollection() {
-            try
-            {
+            try {
                 return _tourRepo.ReadAll();
             }
-            catch(Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.Error($"Could not get tourcollection exception: {ex.Message} stackinfo: {ex.StackTrace}");
                 return new ObservableCollection<Tour>();
             }
@@ -84,112 +81,125 @@ namespace TourPlanner.BL {
 
 
         public void DeleteTour(string id) {
-            try
-            {
+            try {
                 _tourRepo.Delete(id);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.Error($"Could not delete tour [ID:{id}] exception: {ex.InnerException}");
             }
         }
         public void DeleteTourLog(string id) {
-            try
-            {
+            try {
                 _tourLogRepo.Delete(id);
             }
-            catch(Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.Error($"Could not delete tourlog [ID:{id}] exception: {ex.InnerException}");
             }
         }
 
         public void UpdateTour(Tour tour) {
-            try
-            {
+            try {
                 _tourRepo.Update(tour);
             }
-            catch(Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.Error($"Could not update tour [ID:{tour.Id}] exception: {ex.InnerException}");
             }
         }
 
         public void UpdateTourLog(TourLog tourlog) {
-            try
-            {
+            try {
                 _tourLogRepo.Update(tourlog);
             }
-            catch(Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.Error($"Could not update tourlog for tour [ID:{tourlog.TourId}] exception: {ex.InnerException}");
             }
         }
 
         public Tour FindTour(string id) {
-            try
-            {
+            try {
                 return _tourRepo.Read(id);
             }
-            catch(Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.Error($"Could not find tour [ID:{id}] exception: {ex.InnerException}");
-                return new Tour("","","","","","","","","","","",Tour.transportType.car,"","");
+                return new Tour("", "", "", "", "", "", "", "", "", "", "", Tour.transportType.car, "", "");
             }
         }
 
 
+        public double CalAvgRating(string tourid) {
+            //get all  tourlogs from tour id
+            var logs = _tourLogRepo.GetTourLogs(tourid);
+
+
+            //parse rating to int and calculate avg
+            List<int> ratingList = new List<int>();
+            foreach (var log in logs) {
+
+                ratingList.Add(_userInputService.ParseInputToInt(log.Rating));
+            }
+            return ratingList.Average();
+
+
+        }
+
         public void CreateTourLog(string tourId, string date, string duration, string distance, string rating, string difficulty, string comment) {
 
+
             TourLog tourLog = new TourLog(Guid.NewGuid().ToString(), tourId, date, duration, distance, rating, difficulty, comment);
-            try
-            {
+            try {
                 _tourLogRepo.Create(tourLog);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.Error($"tourlog for Tour [ID:{tourId}] was not created exception: {ex.InnerException}");
             }
         }
 
         public ObservableCollection<TourLog> GetTourLogs(string tourId) {
-            try
-            {
+            try {
                 return _tourLogRepo.GetTourLogs(tourId);
             }
-            catch(Exception ex)
-            {
+            catch (Exception ex) {
                 _logger.Error($"Could not get tourlogs for tour [ID:{tourId}] exception: {ex.InnerException}");
                 return new ObservableCollection<TourLog>();
             }
         }
 
 
+
         public void SingleReport(Tour tour) {
+
+
+            tour.AvgRating = CalAvgRating(tour.Id);
 
             _reportService.GenerateSingleReport(tour, GetTourLogs(tour.Id));
         }
 
         public void TourSummary() {
+            var tours = GetTourCollection();
 
-            _reportService.GenerateSummary(GetTourCollection());
+            foreach (var tour in tours) {
+
+                tour.AvgRating = CalAvgRating(tour.Id);
+            }
+            _reportService.GenerateSummary(tours);
         }
 
         public void ExportTour(Tour tour) {
 
             _exportImportService.ExportTour(tour);
+
         }
 
         public void ImportTour(string fileName) {
-           
-            _tourRepo.Create(_exportImportService.ImportTour(fileName)); 
+
+            _tourRepo.Create(_exportImportService.ImportTour(fileName));
         }
 
-        
+
 
         public bool IsZip(string zip) {
-            
-            
+
+
             return _userInputService.IsZip(_userInputService.ParseInputToInt(zip));
         }
 

@@ -11,14 +11,15 @@ using TourPlanner.Models;
 
 namespace TourPlanner.BL.Services {
     public class ReportService {
-
+        private string _path; 
         public ReportService() {
-
+            _path = Environment.CurrentDirectory + "/reports";
+            Directory.CreateDirectory(_path);
 
         }
         public void GenerateSummary(ObservableCollection<Tour> tourCollection) {
-            
-            string TARGET_PDF = $"Report_{GetTimeStamp()}.pdf";
+
+            string TARGET_PDF = $"{_path}/Report_{GetTimeStamp()}.pdf";
 
             PdfWriter writer = new PdfWriter(TARGET_PDF);
             PdfDocument pdf = new PdfDocument(writer);
@@ -39,7 +40,7 @@ namespace TourPlanner.BL.Services {
         public void GenerateSingleReport(Tour tour, ObservableCollection<TourLog> tourlogs) {
             string MAP_IMG = $"{Environment.CurrentDirectory}" + $"/img/{tour.Id}.jpg";
 
-            string TARGET_PDF = $"{tour.Name}_{GetTimeStamp()}.pdf";
+            string TARGET_PDF = $"{_path}/{tour.Name}_{GetTimeStamp()}.pdf";
 
             PdfWriter writer = new PdfWriter(TARGET_PDF);
             PdfDocument pdf = new PdfDocument(writer);
@@ -68,7 +69,11 @@ namespace TourPlanner.BL.Services {
 
         }
 
-        public void GenerateTourSummary(Document document,  List<Tour> tours) {
+        public void GenerateTourSummary(Document document, List<Tour> tours) {
+
+            string AVGRATING = $"Average rating of all tours: {CalAvgRating(tours)}";
+
+            document.Add(new Paragraph(AVGRATING));
 
             foreach (Tour tour in tours) {
 
@@ -80,7 +85,18 @@ namespace TourPlanner.BL.Services {
 
             }
 
+        }
+
+        private double CalAvgRating(List<Tour> tours) {
             
+
+            List<double> ratingList = new List<double>();
+            foreach (var tour in tours) {
+
+                ratingList.Add(tour.AvgRating);
+            }
+            return ratingList.Average();
+
         }
 
         public string GetTimeStamp() {
@@ -103,6 +119,10 @@ namespace TourPlanner.BL.Services {
             string FROM_ADDRESS = $"{tour.StartAddress} {tour.StartAddressNum}, {tour.StartZip} {tour.StartCity}, {tour.StartCountry}";
             string TO_ADDRESS = $"{tour.EndAddress} {tour.EndAddressNum}, {tour.EndZip} {tour.EndCity}, {tour.EndCountry}";
             string TRANSPORT = $"Transport: {tour.TransportType.ToString()}";
+            string AVGRATING = $"Average rating: {tour.AvgRating}";
+            if(tour.AvgRating < 1) {
+                AVGRATING = "Average rating: No logs";
+            }
 
 
             Paragraph TourName = new Paragraph(tour.Name)
@@ -118,6 +138,10 @@ namespace TourPlanner.BL.Services {
             AddNewLine(document);
 
             document.Add(new Paragraph(TRANSPORT));
+
+            AddNewLine(document);
+
+            document.Add(new Paragraph(AVGRATING));
 
             AddNewLine(document);
 
@@ -175,7 +199,7 @@ namespace TourPlanner.BL.Services {
 
 
 
-        
+
 
 
     }

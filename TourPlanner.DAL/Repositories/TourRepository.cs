@@ -38,6 +38,7 @@ namespace TourPlanner.DAL.Repositories {
             cmd.Parameters.AddWithValue("slng", data.StartLng);
             cmd.Parameters.AddWithValue("elat", data.EndLat);
             cmd.Parameters.AddWithValue("elng", data.EndLng);
+            //cmd.Parameters.AddWithValue("avgr", data.AvgRating);
 
             if (_db.ExecuteNonQuery(cmd)) {
                 return true;
@@ -86,6 +87,13 @@ namespace TourPlanner.DAL.Repositories {
                     tour.StartLng = reader.GetValue(15).ToString();
                     tour.EndLat = reader.GetValue(16).ToString();
                     tour.EndLng = reader.GetValue(17).ToString();
+                    /*double rating = Convert.ToDouble(reader.GetValue(18));
+                    if (rating > 0) {
+                        tour.AvgRating = rating;
+                    }
+                    else {
+                        tour.AvgRating = 0;
+                    }*/
 
                     return tour;
                 }
@@ -121,6 +129,14 @@ namespace TourPlanner.DAL.Repositories {
                         tour.StartLng = reader.GetValue(15).ToString();
                         tour.EndLat = reader.GetValue(16).ToString();
                         tour.EndLng = reader.GetValue(17).ToString();
+                        /*double rating = Convert.ToDouble(reader.GetValue(18));
+                        if(rating > 0) {
+                            tour.AvgRating = rating;
+                        }
+                        else {
+                            tour.AvgRating = 0;
+                        }*/
+                        
 
                         list.Add(tour);
 
@@ -139,7 +155,9 @@ namespace TourPlanner.DAL.Repositories {
             NpgsqlCommand cmd = new NpgsqlCommand(sql);
             cmd.Parameters.AddWithValue("n", data.Name);
             cmd.Parameters.AddWithValue("d", data.Description);
+           // cmd.Parameters.AddWithValue("avgr", data.AvgRating);
             cmd.Parameters.AddWithValue("id", data.Id);
+            
 
             if (_db.ExecuteNonQuery(cmd)) {
                 return true;
