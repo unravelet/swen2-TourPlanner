@@ -11,12 +11,13 @@ using TourPlanner.Models;
 
 namespace TourPlanner.BL.Services {
     public class ReportService {
-        private string _path; 
+        private string _path;
         public ReportService() {
             _path = Environment.CurrentDirectory + "/reports";
             Directory.CreateDirectory(_path);
 
         }
+
         public void GenerateSummary(ObservableCollection<Tour> tourCollection) {
 
             string TARGET_PDF = $"{_path}/Report_{GetTimeStamp()}.pdf";
@@ -88,7 +89,7 @@ namespace TourPlanner.BL.Services {
         }
 
         private double CalAvgRating(List<Tour> tours) {
-            
+
 
             List<double> ratingList = new List<double>();
             foreach (var tour in tours) {
@@ -120,7 +121,7 @@ namespace TourPlanner.BL.Services {
             string TO_ADDRESS = $"{tour.EndAddress} {tour.EndAddressNum}, {tour.EndZip} {tour.EndCity}, {tour.EndCountry}";
             string TRANSPORT = $"Transport: {tour.TransportType.ToString()}";
             string AVGRATING = $"Average rating: {tour.AvgRating}";
-            if(tour.AvgRating < 1) {
+            if (tour.AvgRating < 1) {
                 AVGRATING = "Average rating: No logs";
             }
 
